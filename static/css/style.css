@@ -1,0 +1,2500 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    /* !have not tested overflow-x */
+    /* overflow-x: hidden; */
+}
+
+/* light */
+.lightness {
+font-family: 'Montserrat', sans-serif;
+}
+
+.mediumness {
+   font-family: 'Playfair Display', serif;
+}
+
+
+/* !done after this */
+
+ html, body {
+   max-width: 100%;
+   /* overflow-x: hidden; */
+} 
+/* !done after this */
+
+body {
+    display: grid;
+    place-items: center;
+    height: 99.9%;
+    width: 99.9%;
+    color: #4F2C00;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    /* overflow-x: hidden; */
+}
+
+.static_and_immovable {
+
+    /* background-color: #F1F9FF; */
+
+    height: 99.9vh;
+    width: 99.8vw;
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Background_Image2x.jpg');
+   background-position: center;
+   background-position-y: 40vh;
+   background-attachment: fixed;
+   background-size: contain;
+   background-repeat: no-repeat; 
+   /* position: fixed; */
+    /* display: grid; */
+    /* top: 0; */
+   /* overflow:hidden; */
+    /* place-content: center; */
+    /* overflow-y: scroll; */
+    overflow-x: clip;
+}
+
+.sunflower_logo_bar {
+   height: 10vh;
+   top: 0;
+    width: 99.9vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 0;
+    /* background-color: #F1F9FF; */
+    background-image: url('/bdfsun-preview/static/img/main_imgs/Header-Identity2x.jpg');
+   /*  background: url('/bdfsun-preview/static/img/main_imgs/Header-Identity2x.jpg'); */
+    /* iOS Safari ignores background-attachment:fixed (and WebKit also drops it on
+       transformed elements, which this animated bar is), so "contain" was resolved
+       against the 106px-tall bar instead of the viewport: the logo shrank to ~350px,
+       left-aligned, leaving a see-through strip that page content scrolled behind.
+       Size the image explicitly to the viewport width instead; this reproduces the
+       fixed/contain rendering exactly, in every engine. */
+    background-size: 100vw auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    z-index: 999;
+    left: 0;
+    /* own compositor layer, so momentum scrolling never repaints/jitters it */
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    /* !formerly!!! >>> - scrolling bar issues */
+    /* position: absolute; */
+    /* position: fixed; */
+
+    /* place-items: center; */
+    animation: logobar_glow 5s infinite;
+}
+
+@keyframes logobar_glow {
+	0% {
+		transform: scale(0.995);
+      filter: drop-shadow(0pt 1pt 1pt #00000029);
+	}
+
+	70% {
+		transform: scale(1);
+      filter: drop-shadow(0pt 3pt 20pt #00000029);
+	}
+
+	100% {
+		transform: scale(0.995);
+      filter: drop-shadow(0pt 1pt 1pt #00000029);
+	}
+}
+
+
+
+
+#sunflower_logo {
+    /* grid-column: 2; */
+ /*    background: url('/bdfsun-preview/static/img/main_imgs/Header-Identity2x.jpg'); */
+   }
+
+.festival_text {
+    margin-top: 10vh;
+    padding-bottom: 3vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-height: 10vh;
+}
+
+#festival_text_img {
+    height: 3vh;
+    width: 80vw;
+    grid-column: 2;
+}
+
+.changeable_content {
+   margin-top: 17vh;
+    /* background-color: #F1F9FF; */
+    /* background-color: transparent; */
+    background: url('/bdfsun-preview/static/img/main_imgs/Background_Image2x.jpg');
+    background-position-y: 40vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background-size: contain;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+    /* height: 80vh; */
+    overflow-x: clip;
+}
+
+/* !70vh */
+
+
+.changeable_content>div {
+
+   /* display: grid; */
+   background: transparent;
+}
+
+.welcome_screen {
+   display: grid;
+   height: 80vh;
+
+   /* !might need to change overflow */
+   overflow-y: scroll;
+}
+
+/* .ws_title is now an <h1>; keep the weight it had as a <div> */
+h1.ws_title {
+   font-weight: inherit;
+}
+
+.ws_title {
+   font-size: 28px;
+   /* font-size: 28pt; */
+   top: 10;
+   position: absolute;
+   width: 50%;
+   margin-left: 25%;
+   /* display: grid; */
+   /* place-items: center; */
+   /* position: fixed; */
+   /* !very hacky shit here */
+   /* top: 15vh; */
+   display: grid;
+   place-items: center;
+   font-family: 'Playfair Display', serif;
+   font-weight: 700;
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+}
+
+.ws_text {
+   height: 15vh;
+   margin-right: 10vw;
+   margin-left: 10vw;
+   /* margin-top: -35vh; */
+   text-align: center;
+   margin-top: 7vh;
+   line-height: 2.7vh;
+   font-size: 1.11rem;
+   margin-bottom: 5vh;
+}
+
+
+.tiles {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   height: 30vh;
+   /* grid-gap: 3vh; */
+   /* padding-left: 5vh; */
+   /* padding-right: 5vh; */
+   /* grid-gap: 4vh; */
+   row-gap: 5vh;
+   /* column-gap: -25vh; */
+   margin-right: 1vh;
+   margin-left: 1vh;
+   place-items: center;
+   margin-top: -20vh;
+   background-color: transparent;
+   font-family: 'Playfair Display', serif;
+}
+
+.tiles>div {
+   width: 18vh;
+   height: 18vh;
+   background-color: white;
+   text-align: center;
+   display: grid;
+   place-items: center;
+   border-radius: 10%;
+   filter: drop-shadow(0pt 3pt 6pt #00000029);
+
+}
+
+.dot_sf{
+
+   background:url('/bdfsun-preview/static/img/main_imgs/Sunflower Icon2x.png');
+}
+
+.dot_of {
+
+   background:url('/bdfsun-preview/static/img/main_imgs/Tractor Icon2x.png');
+
+}
+
+.dot_in {
+
+   background:url('/bdfsun-preview/static/img/main_imgs/Insects2x.png');
+}
+
+.dot_ed {
+
+   background:url('/bdfsun-preview/static/img/main_imgs/Education Icon2x.png');
+
+}
+
+
+
+.dot {
+   margin-top: 2vh;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: top;
+   display: inline-block;
+   width: 10vh;
+   height: 10vh;
+   /* opacity: 49%; */
+}
+
+.tile_text {
+   font-size: 1.1rem;
+   font-weight: 600;
+   font-family: Arial, Helvetica, sans-serif;
+   background-color: transparent;
+   margin-bottom: 2vh;
+}
+
+.tile_in,
+.tile_ed {
+   margin-top: -1vh;
+}
+
+
+.shop_sticky {
+   background-color: #FFEECA;
+   height: 8vh;
+   display: grid;
+   place-items: center;
+   bottom: 0;
+   width: 99.9vw;
+}
+
+.shop_background {
+background: url('/bdfsun-preview/static/img/main_imgs/Sunflower CTA2x.png');
+/* width: 100%; */
+background-repeat: no-repeat;
+background-size: contain;
+height: 100%;
+width: 99.99%;
+display: grid;
+place-items: center;
+}
+
+
+.sunflower_shop {
+    height: 6vh;
+    background-color: transparent;
+    /* background-color: #2699FB; */
+    /* color: white; */
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 0;
+    width: 80vw;
+    color: #4F2C00;
+    margin-top: 1vh;
+
+}
+
+
+.shop_camera {
+
+   position: relative;
+   left: 17vh;
+   top: -6.5vh;
+
+}
+
+
+.static {
+    position: fixed;
+    /* animation: repaint 1ms;
+    animation-iteration-count: infinite;
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased; */
+}
+
+
+/* !double media query? */
+@media not all and (min-resolution: .001dpcm) { @media {
+   .static {
+      /* transform: translateZ(0);
+      -moz-transform: translatez(0);
+      -ms-transform: translatez(0);
+      -o-transform: translatez(0);
+      -webkit-transform: translateZ(0);
+      -webkit-font-smoothing: antialiased; */
+    
+   }
+}}
+
+
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) {
+
+    .static { 
+
+      /* transform: translateZ(0);
+      -moz-transform: translatez(0);
+      -ms-transform: translatez(0);
+      -o-transform: translatez(0);
+      -webkit-transform: translateZ(0);
+      -webkit-font-smoothing: antialiased;
+      animation: repaint 1ms;
+      animation-iteration-count: infinite; */
+    }
+}}
+/* !double media query? */
+
+@keyframes repaint {
+   from {
+     width: 99.9991vw
+   }
+   to {
+     width: 99.9999vw;
+   }
+ }
+ 
+ 
+
+
+/* Sunflower festival page */
+.sunflower_festival {
+   background-color: transparent;
+   /* overflow: scroll; */
+   /* overflow-x: hidden; */
+}
+
+.title_bar {
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+   font-family: 'Playfair Display', serif;
+
+
+   font-weight: 700;
+   margin-bottom: 2vh;
+   /* border-inline-width: 50vw; */
+   white-space: nowrap;
+   width: 50%;
+   margin-left: 25%;
+}
+
+#sf_title {
+    text-align: center;
+    white-space: pre-wrap;
+
+}
+
+#sf_description {
+    text-align: center;
+    /* color: #2899FB; */
+    margin-left: 15vw;
+    margin-right: 15vw;
+    line-height: 3vh;
+    margin-bottom: 2vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.sf_video {
+    /* background-color: #BCE0FD; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 3vh;
+}
+
+video {
+    width: 99.9vw;
+}
+
+#sf_video_source {
+    grid-column: 2;
+    padding-bottom: 2vh;
+    border: 0;
+}
+
+.sf_options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 5vh;
+    background-color: transparent;
+    grid-gap: 2vh;
+}
+
+.button_option {
+    grid-column: 2;
+    border: 2px solid #FFE6A6;
+    height: 15vh;
+    width: 80vw;
+    margin-top: 1vh;
+    border-radius: 5%;
+    color: #502C00;
+    font-size: 2.5vh;
+    font-weight: bolder;
+      margin-top: 1vh;
+    width: 85vw;
+    height: 14vh;
+    font-size: 2.5vh;
+    border-radius: 10pt 10pt 10pt 10pt;
+    border: solid 1pt #FFC630;
+    filter: drop-shadow(0pt 3pt 6pt #00000029);
+    /* background-color: #BCE0FD; */
+    /* color: #2899FB; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+
+font-family: 'Playfair Display', serif;
+   white-space: nowrap;
+   color: #4F2c00;
+   font-weight: bold;
+   letter-spacing: 0;
+}
+
+#weekend_button {
+   background: url("/bdfsun-preview/static/img/sunflower_festival/Weekend Activities BGK2x.png");
+   background-size: cover;
+}
+#weekday_button {
+    background: url("/bdfsun-preview/static/img/sunflower_festival/Weekday Activities BKG2x.png");
+    background-size: cover;
+}
+
+#community_button {
+   background: url("/bdfsun-preview/static/img/sunflower_festival/Community involvement2x.png");
+   background-size: cover;
+
+
+}
+#sf_map_title {
+    text-align: center;
+    margin-bottom: 2vh;
+    background-color: transparent;
+    font-size: 28px;
+    font-weight: 700;
+   border-bottom: 6px solid #FFC630;
+   margin-left: 25%;
+   margin-right: 25%;
+
+   font-family: 'Playfair Display', serif;
+   /*
+   border-bottom: 6px solid #FFE6A6;
+   font-weight: bold;
+   margin-bottom: 2vh;
+   width: 50%;
+   margin-left: 25%;
+   white-space: nowrap;
+
+*/
+}
+
+#sf_google_map {
+    height: 30vh;
+    width: 99.9vw;
+}
+
+/* Our Farm Page */
+.our_farm {
+   /* overflow-x: hidden; */
+       /* background-color: #F1F9FF; */
+       background-color: transparent;
+}
+
+.of_photo > img {
+   width: 99.9vw;
+   margin-bottom: 5vh;
+}
+
+.of_text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+#of_title {
+    /* color: #2899FB; */
+    font-weight: lighter;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#of_description {
+    /* color: #2899FB; */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 2.5vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.of_options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3vh;
+    margin-bottom: 10vh;
+    grid-gap: 2.22vh;
+   background-color: transparent;
+    border-radius: 10pt 10pt 10pt 10pt;
+    filter: drop-shadow(0pt 3pt 6pt #00000029);
+    /* background-color: #BCE0FD; */
+    /* color: #2899FB; */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.story_button {
+   background: url('/bdfsun-preview/static/img/our_farm/Our Story2x.png');
+}
+
+.vision_button {
+   background: url('/bdfsun-preview/static/img/our_farm/Vision Statement2x.png');
+}
+
+.partner_button {
+   background: url('/bdfsun-preview/static/img/our_farm/2021 Partners2x.png');
+}
+
+
+.gs_border {
+
+}
+
+
+.of_button {
+    grid-column: 2;
+    margin-top: 1vh;
+    width: 85vw;
+    height: 14vh;
+    font-size: 2.5vh;
+    border-radius: 10pt 10pt 10pt 10pt;
+    border: solid 1pt #FFC630;
+    filter: drop-shadow(0pt 3pt 6pt #00000029);
+    /* background-color: #BCE0FD; */
+    /* color: #2899FB; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+
+font-family: 'Playfair Display', serif;
+   white-space: nowrap;
+   color: #4F2c00;
+   font-weight: bold;
+   letter-spacing: 0;
+
+}
+
+
+
+
+
+.of_button_text {
+    text-align: center;
+    grid-column-start: 2;
+    place-items: center;
+    vertical-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.of_button_arrow {
+   display: grid;
+   place-items: center;
+   background: url('/bdfsun-preview/static/img/main_imgs/arrow-right2x.png');
+   height: 3.33vh;
+
+
+   width: 3.33vh;
+   /* background-attachment: fixed; */
+   background-size: contain;
+   background-position: right;
+   background-repeat: no-repeat;
+   /* margin-right: 5vw; */
+   /* place-items: center; */
+   /* grid-column-start: 3; */
+   /* vertical-align: center; */
+   /* z-index: 999; */
+}
+
+/* Insects Page */
+.insects {
+    background-color: #F1F9FF;
+}
+
+.in_text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+#in_title {
+    /* color: #2899FB; */
+    font-weight: lighter;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#in_description {
+    /* color: #2899FB; */
+    line-height: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.in_options {
+    margin-top: 3vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.in_button {
+    background-color: #FFFFFF;
+    grid-column: 2;
+    border: solid 2pt #FFC630;
+    box-shadow: #00000029 0pt 5pt 10pt;
+    height: 8vh;
+    width: 85vw;
+    border-radius: 28pt 28pt 28pt 28pt;
+    margin: 1vh;
+    display: grid;
+    grid-template-columns: 20vw 45vw;
+    grid-template-rows: repeat(3, 1fr);
+    /* place-items: center; */
+
+   }
+
+   .in_button_text {
+       grid-column: 2;
+       /* color: #2899FB; */
+       grid-row: 2;
+       margin: auto;
+       text-align: left;
+       white-space: nowrap;
+       font-family: 'Playfair Display', serif;
+       font-size: 14px;
+       font-weight: 700;
+   }
+
+.in_dot {
+    margin: auto;
+    grid-row: 2;
+    grid-column: 1;
+    height: 6vh;
+    width: 6vh;
+    background-color: #74BEFC;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+
+/* !insect  buttons images*/
+
+.dt_asian {
+   background-image: url('/bdfsun-preview/static/img/Insects/Asian Lady Beetle Large2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 20vh;
+}
+.dt_bumble {
+   background-image: url('/bdfsun-preview/static/img/Insects/Bumblebee Species2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 15vh;
+}
+.dt_cabbage {
+   background-image: url('/bdfsun-preview/static/img/Insects/CabbageWhiteFemaleButterfly2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 12vh;
+
+}
+.dt_corn {
+   background-image: url('/bdfsun-preview/static/img/Insects/CornEarwormMothCaterpillar2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 15vh;
+
+}
+.dt_differential {
+   background-image: url('/bdfsun-preview/static/img/Insects/DifferentialGrasshopper2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+
+}
+.dt_fall {
+   background-image: url('/bdfsun-preview/static/img/Insects/FallWebwormMothCaterpillar2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 15vh;
+
+}
+.dt_golden {
+   background-image: url('/bdfsun-preview/static/img/Insects/GoldenrodSoldierBeetle2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+
+}
+.dt_hawaii {
+   background-image: url('/bdfsun-preview/static/img/Insects/HawaiianBeetWebwormMoth2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+}
+.dt_monarch {
+   background-image: url('/bdfsun-preview/static/img/Insects/MonarchButterfly2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+}
+.dt_pipe {
+   background-image: url('/bdfsun-preview/static/img/Insects/PipevineSwallowtailButterfly2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+}
+.dt_seven {
+   background-image: url('/bdfsun-preview/static/img/Insects/SevenSpottedLadyBeetle2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+}
+.dt_western {
+   background-image: url('/bdfsun-preview/static/img/Insects/WesternHoneyBee2x.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-clip:border-box;
+   background-size: 13vh;
+}
+
+/*? insect  buttons images end*/
+
+/* secondary insect stuff */
+
+.i_title {
+
+   font-size: 28px;
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+   font-family: 'Playfair Display', serif;
+   font-weight: 700;
+   margin-bottom: 2vh;
+   /* border-inline-width: 50vw; */
+   width: 50%;
+   margin-left: 25%;
+}
+
+.snd_img_in {
+   width: 99.9vw;
+}
+
+.snd_cls_in {
+
+   margin: 2vh;
+   text-align: center;
+   font-weight: bold;
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-weight: 700;
+}
+
+.snd_desc_in {
+   text-align: center;
+   font-weight: medium;
+   margin: 5vh;
+   margin-right: 7vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* end secondary insect stuff */
+
+
+
+
+/* Education Page */
+.education {
+    /* background-color: #F1F9FF; */
+    /* overflow-x: hidden; */
+}
+
+.ed_text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+
+   }
+
+
+#ed_title {
+    /* color: #2899FB; */
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.ed_slider {
+    margin-top: 2vh;
+    /* background-color: #BCE0FD; */
+    height: 20vh;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    place-items: center;
+    /* color: #2899FB; */
+
+    /* background: url('static/img/') */
+}
+
+
+
+#ed_slider_left {
+   font-size: 10vh;
+   font-family: Arial;
+   grid-column: 1;
+   position: relative;
+   top:-18vh;
+   left: -20vh;
+   font-size: 10vh;
+   color: #FFC05D;
+   font-weight: 100;
+   font-size: 10vh;
+   /* margin-top: 3vh; */
+   /* margin-right: 20vw; */
+}
+
+
+#ed_slider_right {
+    font-size: 10vh;
+    font-family: Arial;
+      /* margin-top: 3vh; */
+   grid-column: 3;
+   position: relative;
+   top: -18vh;
+   right: 5vh;
+   font-size: 10vh;
+   color: #FFC05D;
+   
+  font-weight: 100;
+  font-size: 10vh;
+  z-index: 999;
+}
+
+#ed_description {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-bottom: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 2.5vh;
+    /* color: #2899FB; */
+}
+
+#ed_text_one {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    /* color: #2899FB; */
+    line-height: 2.5vh;
+}
+
+#ed_text_two {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    /* color: #2899FB; */
+    line-height: 2.5vh;
+}
+
+#ed_text_three {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 5vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    /* color: #2899FB; */
+    line-height: 2.5vh;
+}
+
+.ed_options {
+    display: grid;
+    place-items: center;
+}
+
+.ed_button {
+    height: 7vh;
+    width: 80vw;
+    border: 0;
+    margin-bottom: 2vh;
+    display: grid;
+    grid-template-columns: 70vw 10vw;
+    background-color: white;
+    /* color: #2899FB; */
+}
+
+.ed_button_text {
+   /* font-family: 'Montserrat', sans-serif; */
+   font-size: 17px;
+   font-weight: 400;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 5vw;
+    text-align: left;
+}
+
+.ed_button_arrow {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+}
+
+/* Weekday Page */
+.weekday {
+    /* background-color: #F1F9FF; */
+    /* overflow-x: hidden; */
+}
+
+.wday_text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+#wday_title {
+    /* color: #2899FB; */
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.wday_subtext {
+    line-height: 2.5vh;
+    /* color: #2899FB; */
+    margin-left: 10vw;
+    margin-right: 10vw;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 3vh;
+}
+
+.wday_image_container {
+    /* background-color: #BCE0FD; */
+    width: 100vw;
+    height: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+    display: grid;
+    place-items: center;
+
+   margin-bottom: 9.3vh;
+}
+
+.pl_text {
+
+    position: relative;
+    top: 14vh;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.wday_image_container > img {
+   /* height: 20vh; */
+   width: 100vw;
+}
+#wday_description {
+    margin-top: 3vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    /* color: #2899FB; */
+    font-family: 'Playfair', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 3vh;
+
+}
+
+/* Bottom of page. */
+.bottom_bar {
+    width: 99.9vw;
+    height: 7vh;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+
+   }
+
+/* div for bottom logo */
+.bottom_logo {
+    margin-top: 5vh;
+    grid-column: 2;
+    margin: auto;
+}
+
+/* image of bottom logo */
+.bottom_logo img {
+    height: 10vh;
+    width: 10vh;
+    margin-bottom: 2vh;
+}
+
+/* div for bottom text */
+ .bottom_text {
+   margin-top: 4vh;
+   width: 99.9%;
+    margin-bottom: 30vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    /* background-color: #BCE0FD; */
+    line-height: 4vh;
+    background-color: transparent;
+}
+
+
+/* july 8  */
+
+.daBackButton {
+    display: none;
+    position: fixed;
+    left: 1vh;
+    top: 1.66vh;
+}
+
+/* weekend */
+.weekend {
+    display: grid;
+    place-items: center;
+    /* overflow-x: hidden; */
+}
+
+.wend_slider {
+    /* background-color: #BCE0FD; */
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 3vh;
+    max-height: 20vh;
+    overflow: hidden;
+
+}
+
+.wend_slider > .arrow_left{
+
+}
+
+.wend_slider > .arrow_right {
+
+}
+/* .wend_slider > img {
+   width: 99.9vw;
+   height: 100%;
+
+} */
+
+.wend_img_slider {
+    grid-column: 2/3;
+    width: 99.9vw;
+    margin: auto;
+    display: grid;
+    place-items: center;
+}
+
+
+
+
+/* ! new wend slider */
+
+.wend2_slider {
+height: 25vh;
+margin-bottom: 4vh;
+}
+
+.wend2_image  {
+   width: 99.9vw;
+   height: 25vh;
+   /* background-size: 99.9vw 20vh; */
+   /* background-attachment: fixed; */
+   background: url('/bdfsun-preview/static/img/sunflower_festival/weekend_activities/weekend_content_1.jpg');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   place-items: center;
+   grid-gap: 60vw;
+}
+
+.wend2_image > div > img {
+   height: 5vh;
+   background: inherit;
+}
+
+
+
+/* ! end new wend slider */
+
+
+
+.wend_text {
+    display: grid;
+    text-align: center;
+    grid-gap: 1.5em;
+    /* color: #2899FB; */
+    line-height: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    padding-left: 10vw;
+    padding-right: 10vw;
+
+}
+
+.wend_title {
+    /* color: #2899FB; */
+    font-weight: lighter;
+    padding-bottom: 2vh;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2vh;
+    background-color: transparent;
+    font-size: 28px;
+    font-weight: 700;
+   border-bottom: 6px solid #FFC630;
+   margin-left: 25%;
+   margin-right: 25%;
+
+   font-family: 'Playfair Display', serif;
+}
+
+.community {
+    display: grid;
+    place-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+    /* overflow-x: hidden; */
+    /* color: #2699FB; */
+}
+
+.com_title {
+   text-align: center;
+   white-space: pre-wrap;
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+
+
+   margin-bottom: 2vh;
+   /* border-inline-width: 50vw; */
+   /* white-space: nowrap; */
+   width: 50%;
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+}
+.com_img {
+    height: 30vh;
+}
+
+.com_img>img {
+    /* height: 20vh; */
+   width: 99.9vw;
+}
+
+.com_h3 {
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-weight: 700;
+}
+.com_text {
+    margin: 1em;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.arrow_right,
+.arrow_left {
+    display: grid;
+    width: 99.9%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    place-items: center;
+}
+
+/* testing if jameson can push */
+
+
+.story {
+    display: grid;
+    place-items: center;
+    color: #4F2C00;
+    grid-gap: 2vh;
+}
+
+.os_img {
+   height: 100%;
+   width: 99.9vw;
+
+    /* display: grid;
+    place-items: center; */
+}
+
+.os_title {
+   text-align: center;
+   /* white-space: pre-wrap; */
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+
+
+   /* margin-bottom: 2vh; */
+   /* border-inline-width: 50vw; */
+   white-space: nowrap;
+   width: 50%;
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+}
+.os_gallery_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap: 5vh;
+}
+.os_gallery    {
+    width: 40vw;
+ 
+}
+.os_text {
+   padding: 2vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+}
+
+.os_text > p {
+    text-align: center;
+    padding: 1vh;
+    margin: 1vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.os_arrows {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    height: 20vh;
+    grid-gap: 50vw;
+}
+.os_left {
+    background: url('/bdfsun-preview/static/img/main_imgs/Left Arrow2x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+   height: 5vh;
+   width: 5vh;
+   background-position: center;
+
+
+}
+
+.os_right {
+    background: url('/bdfsun-preview/static/img/main_imgs/Right Arrow2x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+   height: 5vh;
+   width: 5vh;
+   background-position: center;
+}
+
+.vision {
+    display: grid;
+    text-align: center;
+    place-items: center;
+    grid-gap: 2vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.vs_img {
+}
+
+.vs_title {
+   text-align: center;
+   /* white-space: pre-wrap; */
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+
+
+   /* margin-bottom: 2vh; */
+   /* border-inline-width: 50vw; */
+   white-space: nowrap;
+   width: 50%;
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+
+}
+
+.vs_img > img {
+    height: 25vh;
+    width: 99.9vw;
+}
+
+.vs_description {
+
+   line-height: 4vh;
+   padding: 4vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 19px;
+   font-weight: 700;
+}
+
+.vs_gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+       grid-gap: 3vh;
+       place-items: center;
+       height: 65vh;
+}
+
+.vs_gallery > img {
+    /* max-width: 40vw; */
+    height: auto;
+    /* max-height: 20vh; */
+    /* height: 17vh; */
+    max-width: 20vh;
+}
+
+.partner {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+   }
+
+   .pt_title {
+        text-align: center;
+    white-space: pre-wrap;
+    text-align: center;
+    border-bottom: 6px solid #FFC630;
+    /* color: #2899FB; */
+
+
+    margin-bottom: 2vh;
+    /* border-inline-width: 50vw; */
+    white-space: nowrap;
+    width: 50%;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+   }
+   .pt_text {
+       margin-top: 5vh;
+       font-family: 'Playfair Display', serif;
+       font-size: 20px;
+       font-weight: 700;
+       margin-right: 2vh;
+       margin-left: 2vh;
+   }
+   .pt_img {
+    width: 99.9vw;
+   }
+   .pt_partners {
+       width: 90vw;
+       display: grid;
+    place-items: center;
+    padding-bottom: 10vh;
+    grid-gap: 2.5vh;
+    margin-top: 5vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+   }
+
+   .pt_partners> div {
+       height: 15vh;
+       width: 80vw;
+       background-color: white;
+       border-radius: 10pt 10pt 10pt 10pt;
+       display: grid;
+       place-items: center;
+       border: #EEEEEE;
+       box-shadow: #00000029 0pt 3pt 6pt;
+   }
+
+   .pt_partners > div > img {
+   /* height: 20vh; */
+   max-height: 14vh;
+   max-width: 60vw;
+   background-color: white;
+   border-radius: 10pt 10pt 10pt 10pt;
+}
+
+
+
+/* Education Page */
+.education {
+   /* background-color: #F1F9FF; */
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+}
+
+
+/* Education Page */
+
+.ed_text {
+   text-align: center;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+}
+
+#ed_title {
+   /* color: #2899FB; */
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+}
+
+.ed_slider {
+   margin: 0;
+   margin-top: 2vh;
+   width: 99.9vw;
+   height: 30vh;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   text-align: center;
+   /* background: url('/bdfsun-preview/static/img/sunflower_festival/weekend_activities/weekend_content_1.jpg'); */
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+
+}
+
+#ed_slider_img {
+  width: 99.9vw;
+  height: 25vh;
+  left: 0;
+  right: 0;
+  object-position: center;
+  object-fit: cover;
+  /* position: relative; */
+}
+
+
+
+
+.ed_img {
+   width: 99.9vw;
+}
+
+.ed_img > img {
+   
+   width: 99.9vw;
+}
+
+#ed_description {
+   margin-left: 15vw;
+   margin-right: 15vw;
+   margin-top: 5vh;
+   margin-bottom: 3vh;
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-weight: 400;
+   line-height: 2.5vh;
+   /* color: #2899FB; */
+}
+
+#ed_text_one {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 3vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+#ed_text_two {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 3vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+#ed_text_three {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 5vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+.ed_options {
+   display: grid;
+   place-items: center;
+}
+
+.ed_button {
+   height: 7vh;
+   width: 80vw;
+   border: 0;
+   margin-bottom: 2vh;
+   display: grid;
+   grid-template-columns: 70vw 10vw;
+   background-color: #FFC05D;
+   border-radius: 10px;
+   /* color: #2899FB; */
+   
+}
+
+.ed_button_text {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   margin-top: auto;
+   margin-bottom: auto;
+   padding-left: 5vw;
+   text-align: left;
+}
+
+.ed_button_arrow {
+   margin-top: auto;
+   margin-bottom: auto;
+}
+
+
+
+.ed_text {
+   text-align: center;
+}
+
+#ed_title {
+   /* color: #2899FB; */
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+}
+
+.ed_slider {
+   margin-top: 2vh;
+   margin-bottom: 2vh;
+   /* background-color: #BCE0FD; */
+   height: 25vh;
+   /* width: 80vw; */
+   margin-left: auto;
+   margin-right: auto;
+   /* display: grid; */
+   grid-template-columns: repeat(3, 1fr);
+   text-align: center;
+   place-items: center;
+   /* color: #2899FB; */
+}
+
+
+
+
+
+#ed_description {
+   margin-left: 9vw;
+   margin-right: 9vw;
+   margin-bottom: 3vh;
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-weight: 400;
+   line-height: 2.5vh;
+   /* color: #2899FB; */
+}
+
+#ed_text_one {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 3vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+#ed_text_two {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 3vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+#ed_text_three {
+   margin-left: 10vw;
+   margin-right: 10vw;
+   margin-bottom: 5vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+}
+
+.ed_options {
+   display: grid;
+   place-items: center;
+}
+
+.ed_button {
+   height: 7vh;
+   width: 80vw;
+   /* border: 0; */
+   filter: drop-shadow(0pt 3pt 6pt #00000029);
+   margin-bottom: 2vh;
+   display: grid;
+   grid-template-columns: 70vw 10vw;
+   /* background-color: white; */
+   /* color: #2899FB; */
+}
+
+.ed_button_text {
+   font-size: 2vh;
+   margin-top: auto;
+   margin-bottom: auto;
+   padding-left: 5vw;
+   text-align: left;
+   font-family: 'Playfair Display', serif;
+   font-size: 17px;
+   font-weight: 400;
+}
+
+.ed_button_arrow {
+   margin-top: auto;
+   margin-bottom: auto;
+}
+
+.photoForm {
+   display: grid;
+   place-items: center;
+   font-size: 2vh;
+   margin-top: auto;
+   margin-bottom: auto;
+
+   text-align: left;
+   overflow: hidden;
+}
+
+.wrapper{
+   display: grid;
+   place-items: center;
+   font-size: 2vh;
+   margin-top: auto;
+   margin-bottom: auto;
+
+   text-align: left;
+   overflow: hidden;
+}
+#formElement{
+   text-align:center;
+   border:1px solid #ccc;
+   width:90%;
+   padding-bottom: 10px;
+   padding:0 20px;
+   margin:auto;
+   display: grid;
+}
+#formElement > form > div.g-recaptcha
+.g-recaptcha {
+
+   margin: 10vh;
+   height: 10vh;
+
+}
+/* screen titles are h2 (one h1 per document); this rule used to target h1 */
+h2{
+   font-family: 'Playfair Display', serif;
+   font-size: 28px;
+   font-weight: 700;
+}
+
+label{
+   float:left;
+   font-size:17px;
+   font-weight:bold
+}
+input[type="text"]{
+   width:90%;
+   height:30px;
+   margin-bottom:25px;
+   margin-top:10px;
+   padding:5px 10px;
+   border:1px solid #111
+}
+input[type="tel"]{
+   width:90%;
+   height:30px;
+   margin-bottom:25px;
+   margin-top:10px;
+   padding:5px 10px;
+   border:1px solid #111
+}
+input[type="email"]{
+   width:90%;
+   height:30px;
+   margin-bottom:25px;
+   margin-top:10px;
+   padding:5px 10px;
+   border:1px solid #111
+}
+textarea{
+   width:90%;
+   margin-bottom:25px;
+   padding:5px 10px;
+   margin-top:10px;
+   height:100px;
+   border:1px solid #111;
+}
+input[type="submit"]{
+   width:100%;
+   text-align:center;
+   padding:10px;
+   font-weight:bold;
+   color: #4F2C00;
+   /* background-color:#16425D; */
+   border:none;
+   font-size:18px;
+   cursor:pointer;
+   margin-top: 5%;
+   margin-bottom: 10%;
+
+
+
+
+   height: 7vh;
+   width: 80vw;
+   /* border: solid 2px #FFFFFF; */
+   filter: drop-shadow(0pt 4pt 9pt #00000029);
+   margin-bottom: 5vh;
+   display: grid;
+   /* grid-template-columns: 70vw 10vw; */
+   background-color: #FFC05D;
+   border-radius: 10px;
+}
+/*.takePhotoButtonView {
+   display:inline-block;
+   padding:0.3em 1.2em;
+   margin-right: 75%;
+   margin-top: 3%;
+   margin-bottom: 3%;
+   border-radius:2em;
+   box-sizing: border-box;
+   text-decoration:none;
+   font-family:'Roboto',sans-serif;
+   font-weight:300;
+   color:#FFFFFF;
+   background-color:#16425D;
+   text-align:center;
+   transition: all 0.2s;
+}*/
+.takePhotoButtonView {
+   width:80%;
+   right: 0;
+   text-align:left;
+   padding:10px;
+   font-weight:bold;
+   color:#fff;
+   background-color:#FFC630;
+   border:none;
+   font-size:18px;
+   cursor:pointer;
+   margin-top: 5%;
+   margin-bottom: 10%;
+   margin-right: 75%;
+}
+
+input[type="file"] {
+   align-self:left;
+   width:100%;
+   text-align:left;
+   padding:10px;
+   font-weight:bold;
+   color:#16425D;
+   border:none;
+   font-size:18px;
+   cursor:pointer;
+}
+
+.flower_photo_button {
+   margin-top: 20vh;
+   padding-bottom: 40vh;
+   margin-bottom: 40vh;
+}
+
+p {
+   text-align: center;
+}
+
+.ed_title {
+   text-align: center;
+   border-bottom: 6px solid #FFC630;
+   /* color: #2899FB; */
+   font-family: 'Playfair Display', serif;
+
+
+   font-weight: 700;
+   margin-bottom: 2vh;
+   /* border-inline-width: 50vw; */
+   white-space: prewrap;
+   width: 50%;
+   margin-left: 25%;
+   font-size: 28px;
+}
+
+.ed_p {
+   margin-left: 2.5vw;
+   margin-right: 2.5vw;
+   margin-bottom: 1vh;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 17px;
+   font-weight: 400;
+   /* color: #2899FB; */
+   line-height: 2.5vh;
+   text-align: center;
+   padding: 1em;
+}
+
+.ed_anatomy, .ed_bloom,  .ed_choosing, .ed_planting, .ed_cutting, .ed_caring, .ed_harvesting, .ed_sunflower, .ed_pests {
+   padding-bottom: 50vh;
+   background-color: transparent;
+
+}
+
+
+/* ! update to insect and flower */
+
+.g_money {
+   display: grid;
+   place-items: center;
+   grid-gap: 1vh;
+
+}
+
+.photo_title{
+   padding: 5vh;
+   margin-bottom: 10vh;
+}
+
+.wrapper {
+   display: grid;
+   place-items: center;
+   grid-gap: 5vh;
+}
+
+.g_money > * {
+   text-align: center;
+}
+
+
+/* ! hide file text */
+
+
+.hide_text {
+      /* position: absolute; */
+      z-index: 1000;
+      opacity: 0;
+      cursor: pointer;
+      right: 0;
+      top: 0;
+      height: 10vh;
+      font-size: 24px;
+      width: 20vw;
+}
+
+.hide_replacement {
+
+   margin: 5vh;
+   background:#FFE6A6;
+   border:1px solid #FFC630;
+   /* position:relative; */
+   color:#fff;
+   border-radius:5rem;
+   text-align:center;
+   height: 10vh;
+   width: 20vw;
+   box-shadow: 0 0 0 0 #FFC630;
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 #FFC630;
+      
+      /* ! edits */
+      background:#FFE6A6;
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px #FFC630;
+
+      /* ! edits */
+      /* background:#FFE6A6; */
+      background-image: url('/bdfsun-preview/static/img/main_imgs/Camera Icon2x.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 #FFC630;
+
+      /* ! edits */
+      background:#FFE6A6;
+	}
+}
+
+
+.upper-form {
+   display: grid;
+   place-items: center;
+   max-height: 20vh;
+}
+
+/* ! disable zoom */
+.no_zoom {
+   
+}
+
+/* .sf_map_images {
+   display: grid;
+   height: 300vw;
+} */
+
+.sf_map_images > div > img {
+width: 99.9vw;
+
+}
+
+.fullmap {
+   width: 99.9vw;
+}
+
+.sf_map_images > div  {
+   display: grid;
+   place-items: center;
+}
+button.next_map, button.next_map_2, button.next_map_3, button.next_map_4 {
+   margin-top: 2vh;
+   height: 5vh;
+   width: 80vw;
+   border: 0;
+   margin-bottom: 2vh;
+   display: grid;
+   place-items: center;
+   vertical-align: middle;
+   grid-template-columns: 70vw 10vw;
+   background-color: #FFC05D;
+   border-radius: 10px;
+   filter: drop-shadow(0pt 4pt 9pt #00000029);
+   
+}
+
+button.next_map > div, button.next_map_2 > div, button.next_map_3 > div, button.next_map_4 > div {
+
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-weight: 700;
+   filter: drop-shadow(0pt 1pt 3pt #00000029);
+}
+
+
+
+
+/* ! OS GALLERY  */
+.os_gallery_lightbox {
+   height: 100vh;
+   width: 99.9vw;
+   background-color:rgba(0, 0, 0, 0.25);
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+   display: grid;
+   place-items: center;
+   position: fixed;
+   top: 0vh;
+   backdrop-filter: blur(20px) saturate(250%);
+   -webkit-backdrop-filter: blur(20px) saturate(250%);
+   z-index: 999;
+}
+.os_gallery_lightbox > .os_gallery_source {
+   width: 99.9vw;
+   z-index: 999;
+   margin-top: 10vh;
+   /* height: auto; */
+}
+
+.os_gallery_lightbox > * {
+   color: white;
+}
+
+.exit_os_cycle {
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 5vh;
+   width: 5vh;
+   border-radius: 40px;
+   display: grid;
+   place-items: center;
+   margin-top: 15vh;
+   margin-left: 5vh;
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Back Button2x.png');
+   background-size: contain;
+   
+}
+
+.os_gallery_cycle {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   width: 99.9vw;
+   place-items: center;
+   grid-gap: 0;
+}
+
+.os_cycle_left {
+   display: grid;
+   place-items: center;
+   height: 5vh;
+   width: 5vh;
+   margin-top: -30vh;
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Left Arrow2x.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+}
+.os_cycle_right {
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Right Arrow2x.png');
+   background-size:contain;
+   background-repeat: no-repeat;
+   display: grid;
+   place-items: center;
+   margin-top: -30vh;
+   height: 5vh;
+   width: 5vh;
+}
+
+
+
+.youtube_video {
+   width: 99.9vw;
+   height: 25vh;
+}
+
+.inner_circle {
+   display: grid;
+   place-items: center;
+   position: relative;
+   font-size: 16px;
+   top: 36.5vh;
+   /* background-color: rgba(255, 198, 48, 1); */
+   height: 10vh;
+   width: 10vh;
+   border: solid 1px rgba(82, 45, 0, 1);
+   border-radius: 50%;
+   filter: drop-shadow(0pt 3pt 6pt #00000029);
+   box-shadow:
+
+   0 0 50px #fff,            /* outer white */
+   -10px 0 80px rgba(255, 198, 48, 1),        /* outer left magenta */
+   10px 0 80px rgba(82, 45, 0, 1);    
+   animation: inner_circle_glow 5s infinite;
+   z-index: 0;
+   background-color: rgba(255, 198, 48, 1);
+   border: solid 1px rgba(82, 45, 0, 1);
+   box-shadow:
+ inset 0 0 50px rgba(135, 154, 102, .2),     
+ inset 10px 0 10px rgba(255, 198, 48,1 ),   
+ inset -5px -10px 10px rgba(82, 45, 0, .51),  
+ inset -5px 5px 10px rgba(82, 45, 0, .51),  
+ inset -20px 5px 100px rgba(255, 198, 48, 1),  
+ inset 20px 0 100px rgba(82, 45, 0, 1),  
+ 0 0 50px #fff,           
+ 10px 0 10px rgba(255, 198, 48, .1),      
+ -10px 0 10px rgba(82, 45, 0, .1);
+ height: 5.2vh;
+ width: 5.2vh;
+}
+.inner_circle_2 {
+   display: grid;
+   place-items: center;
+   position: relative;
+   font-size: 16px;
+   top: 36.5vh;
+   /* background-color: rgba(255, 198, 48, 1); */
+   height: 10vh;
+   width: 10vh;
+   border: solid 1px rgba(82, 45, 0, 1);
+   border-radius: 50%;
+   filter: drop-shadow(0pt 3pt 6pt #00000029);
+   box-shadow:
+   inset 0 0 50px #fff,     
+   inset 20px 0 80px rgba(255, 198, 48, 1),
+   inset -20px 0 80px rgba(82, 45, 0, 1), 
+   inset 20px 0 300px rgba(255, 198, 48, 1), 
+   inset -20px 0 300px rgba(82, 45, 0, 1), 
+   0 0 50px #fff,      
+   -10px 0 80px rgba(255, 198, 48, 1),       
+   10px 0 80px rgba(82, 45, 0, 1);     
+   animation: inner_circle_glow_2 3s linear;
+   z-index: 0;
+   
+      background-color: rgba(82, 45, 0, 1);
+      border: solid 1px rgba(255, 198, 48, 1);
+      box-shadow:
+    inset 0 0 50px #fff,     
+    inset 10px 0 10px rgba(255, 198, 48, 1),   
+    inset -10px 0 10px rgba(82, 45, 0, 1),  
+    inset 10px 0 100px rgba(255, 198, 48, 1),  
+    inset -10px 0 100px rgba(82, 45, 0, 1), 
+    0 0 50px #fff,           
+    -10px 0 10px rgba(255, 198, 48, 1),      
+    10px 0 10px rgba(82, 45, 0, 1);
+    height: 5.2vh;
+    width: 5.2vh;
+}
+
+@keyframes inner_circle_glow {
+   0% {
+     background-color: rgba(82, 45, 0, 1);
+     border: solid 1px rgba(255, 198, 48, 1);
+     box-shadow:
+   inset 0 0 50px #fff,     
+   inset 10px 0 10px rgba(255, 198, 48, 1),   
+   inset -10px 0 10px rgba(82, 45, 0, 1),  
+   inset 10px 0 100px rgba(255, 198, 48, 1),  
+   inset -10px 0 100px rgba(82, 45, 0, 1), 
+   0 0 50px #fff,           
+   -10px 0 10px rgba(255, 198, 48, 1),      
+   10px 0 10px rgba(82, 45, 0, 1);
+   height: 5.2vh;
+   width: 5.2vh;
+   }
+
+   50% {
+      background-color: rgba(255, 198, 48, .1);
+      border: solid 2px rgba(82, 45, 0, 1);
+      box-shadow:
+      inset -20px 0 20px rgba(82, 45, 0, .1),  
+   inset 0 0 50px #fff,      
+   inset 20px 0 20px rgba(255, 198, 48, 1),   
+   inset -20px 0 200px rgba(82, 45, 0, 1), 
+   inset 20px 0 200px rgba(255, 198, 48, .1),  
+   0 0 50px #fff,            
+   10px 0 20px rgba(82, 45, 0, 1),
+   -10px 0 80px rgba(255, 198, 48, .1);       
+   height: 5.2vh;
+   width: 5.2vh;
+    }
+
+   100% {
+      background-color: rgba(82, 45, 0, 1);
+     border: solid 1px rgba(255, 198, 48, 1);
+     box-shadow:
+   inset 0 0 50px #fff,     
+   inset 10px 0 40px rgba(255, 198, 48, 1),   
+   inset -10px 0 40px rgba(82, 45, 0, 1), 
+   inset 10px 0 100px rgba(255, 198, 48, 1),  
+   inset -10px 0 100px rgba(82, 45, 0, 1), 
+   0 0 20px #fff,          
+   -5px 0 80px rgba(255, 198, 48, 1),      
+   5px 0 80px rgba(82, 45, 0, 1);
+   height: 5.2vh;
+    width: 5.2vh;
+   }
+ }
+
+ 
+@keyframes inner_circle_glow_2 {
+   0% {
+     background-color: rgba(82, 45, 0, 1);
+     border: solid 1px rgba(255, 198, 48, 1);
+     box-shadow:
+   inset 0 0 50px #fff,     
+   inset 10px 0 10px rgba(255, 198, 48, 1),   
+   inset -10px 0 10px rgba(82, 45, 0, 1),  
+   inset 10px 0 100px rgba(255, 198, 48, 1),  
+   inset -10px 0 100px rgba(82, 45, 0, 1), 
+   0 0 50px #fff,           
+   -10px 0 10px rgba(255, 198, 48, 1),      
+   10px 0 10px rgba(82, 45, 0, 1);
+   height: 10vh;
+   width: 10vh;
+   }
+
+   50% {
+      background-color: rgba(255, 198, 48, .1);
+      border: solid 2px rgba(82, 45, 0, 1);
+      box-shadow:
+      inset -20px 0 20px rgba(82, 45, 0, .1),  
+   inset 0 0 50px #fff,      
+   inset 20px 0 20px rgba(255, 198, 48, 1),   
+   inset -20px 0 200px rgba(82, 45, 0, 1), 
+   inset 20px 0 200px rgba(255, 198, 48, .1),  
+   0 0 50px #fff,            
+   10px 0 20px rgba(82, 45, 0, 1),
+   -10px 0 80px rgba(255, 198, 48, .1);       
+   height: 9.2vh;
+   width: 9.2vh;
+    }
+
+   100% {
+      background-color: rgba(82, 45, 0, 1);
+     border: solid 1px rgba(255, 198, 48, 1);
+     box-shadow:
+   inset 0 0 50px #fff,     
+   inset 10px 0 40px rgba(255, 198, 48, 1),   
+   inset -10px 0 40px rgba(82, 45, 0, 1), 
+   inset 10px 0 100px rgba(255, 198, 48, 1),  
+   inset -10px 0 100px rgba(82, 45, 0, 1), 
+   0 0 20px #fff,          
+   -5px 0 80px rgba(255, 198, 48, 1),      
+   5px 0 80px rgba(82, 45, 0, 1);
+   height: 10vh;
+   width: 10vh;
+   }
+ }
+
+ .rotation {
+    animation: rotation 0.34s linear;
+ }
+ .rotation_2 {
+    animation: rotation_2 0.35s linear;
+ }
+
+ @keyframes rotation {
+    from {
+       transform: rotate(0deg);
+    }
+    to {
+       transform: rotate(-89deg);
+    }
+ }
+
+ @keyframes rotation_2 {
+    from {
+       transform: rotate(0deg);
+    }
+    to {
+       transform: rotate(-90deg);
+    }
+ }
+
+
+ 
+/* ! OS GALLERY  */
+
+ .vs_gallery_source {
+   width: 99.9vw;
+   z-index: 998;
+   margin-top: 10vh;
+   /* height: auto; */
+}
+
+.vs_gallery_lightbox > *, .vs_spec_img > * {
+   color: white;
+}
+
+
+ .vs_gallery_lightbox, .vs_spec_img {
+   height: 100vh;
+   width: 99.9vw;
+   background-color:rgba(0, 0, 0, 0.25);
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+   display: grid;
+   place-items: center;
+   position: fixed;
+   top: 0vh;
+   /* backdrop-filter: blur(20px) saturate(250%);
+   -webkit-backdrop-filter: blur(20px) saturate(250%); */
+   
+   z-index: 998;
+ }
+
+
+
+ .blur {
+   filter: blur(10px);
+ }
+ 
+.exit_vs_cycle {
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 5vh;
+   width: 5vh;
+   border-radius: 40px;
+   display: grid;
+   place-items: center;
+   margin-top: 18vh;
+   margin-left: 5vh;
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Back Button2x.png');
+   background-size: contain;
+   filter: drop-shadow(0pt 5pt 6pt #ffeeca);
+   z-index: 999;
+   
+}
+
+.vs_gallery_cycle {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   width: 99.9vw;
+   place-items: center;
+   grid-gap: 0;
+   /* filter: drop-shadow(0pt 5pt 6pt #ffeeca); */
+   z-index: 999;
+
+}
+
+.vs_cycle_left {
+   z-index: 999;
+   filter: drop-shadow(12pt 15pt16pt #ffeeca);
+   display: grid;
+   place-items: center;
+   height: 5vh;
+   width: 5vh;
+   margin-top: -38vh;
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Left Arrow2x.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+   
+}
+.vs_cycle_right {
+   z-index: 999;
+   filter: drop-shadow(12pt 15pt 16pt #ffeeca);
+   background-image: url('/bdfsun-preview/static/img/main_imgs/Right Arrow2x.png');
+   background-size:contain;
+   background-repeat: no-repeat;
+   display: grid;
+   place-items: center;
+   margin-top: -38vh;
+   height: 5vh;
+   width: 5vh;
+  
+}
+
