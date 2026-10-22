@@ -40,5 +40,6 @@ function cycle(display) {
 
 
 // ! on entry
-cycle(welcome_status)
+// deep links are shown by nav.js instead (no flash of the welcome screen)
+if (typeof initial_route === "undefined" || initial_route === "/") cycle(welcome_status)
 // cycle(ourFarm)

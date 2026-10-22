@@ -11,7 +11,7 @@
    --hdr-full: calc(100vw * 236 / 780);   /* Header-Identity2x.jpg: 780x236 */
    --hdr-slim: calc(100vw * 112 / 780);   /* ScrollHeaderIdentity2x.jpg: 780x112 */
    --shop-h: 48px;                        /* bottom bar, above the home indicator */
-   --handle-h: 0px;                       /* reserved for the info panel's grab handle */
+   --handle-h: 20px;                      /* the farm panel's pull-up strip (panel.css) */
    --safe-b: env(safe-area-inset-bottom, 0px);
 }
 
@@ -183,7 +183,7 @@ body {
    position: absolute;
    left: 0;
    right: 0;
-   bottom: 100%;
+   bottom: calc(100% + var(--handle-h));   /* fade starts above the panel strip */
    height: 20px;
    background: linear-gradient(to top, rgba(255, 238, 202, .94), rgba(255, 238, 202, 0));
    pointer-events: none;
@@ -191,3 +191,17 @@ body {
 .daBackButton {
    position: absolute;
 }
+
+/* farm panel strip sits directly on the bar; the camera badge stays on top of it */
+.fp_strip {
+   bottom: calc(var(--shop-h) + var(--safe-b));
+   height: var(--handle-h);
+}
+.static_and_immovable {
+   bottom: calc(var(--shop-h) + var(--handle-h) + var(--safe-b));
+}
+.changeable_content {
+   padding-bottom: 24px;
+}
+.shop_camera { z-index: 998; }
+.fp_sheet { top: calc(var(--hdr-slim) + 6px); }

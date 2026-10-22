@@ -1,0 +1,51 @@
+# Beaver Dam Farm Sunflower Festival (bdfsun.com)
+
+> bdfsun.com is the official companion app of the Beaver Dam Farm Sunflower Festival, held each September at Beaver Dam Farm, 13561 Lee Highway, Buchanan, VA 24066 (Botetourt County, Virginia). The farm has been in the Wickline family since 1900; the festival was started in 2016 by Candace Wickline Monaghan and bills itself as the largest sunflower festival and vendor show on the East Coast. The 2026 festival ran September 11–20, 2026 and has ended; the next festival is coming in September 2027 (dates to be announced).
+
+Key facts (from the farm's official site, https://beaverdamsunflowers.com/):
+- Festival weekends: 10am–5pm, last tickets 4:15pm. Admission $10 cash or $11 by card at the gate; children 5 and under free (2026 prices).
+- Weekday events between the two weekends: field trips, evening hours, sunset and goat yoga, and catered Sunflowers at Sunset dinners.
+- Open only during festival hours and posted events; it is a private working farm.
+- No pets (leashed service animals only). No alcohol. Do not pick the flowers; cut stems are sold at the exit.
+- Contact: BeaverDamSunflowers@gmail.com. Official site: https://beaverdamsunflowers.com/. Events and dates: https://beaverdamsunflowers.com/events/.
+- Social: Facebook https://www.facebook.com/BeaverDamSunflowers · Instagram https://www.instagram.com/beaverdamsunflowers/ · TikTok https://www.tiktok.com/@beaverdamsunflowers · YouTube https://www.youtube.com/channel/UCC6mOPyKMbBZN8RB7UW6ywg.
+- Related venue: Gracely Hill (weddings and events), https://gracelyhill.com.
+
+## App screens
+- [Home](https://bdfsun.com/): The Beaver Dam Farm Sunflower Festival app: festival map, weekend and weekday activities, community involvement, our farm story, an insect guide and sunflower growing tips.
+- [Sunflower Festival](https://bdfsun.com/festival): Plan your visit to the Beaver Dam Farm Sunflower Festival: weekend and weekday activities, community involvement and the festival map with entrance, food, music, first aid and hay rides.
+- [Weekend Activities](https://bdfsun.com/weekend-activities): Weekend activities at the Beaver Dam Farm Sunflower Festival: live music, children’s activities, face painting, craft and food vendors, photo booths, hay rides and fields of sunflowers.
+- [Weekday Activities](https://bdfsun.com/weekday-activities): Weekday activities between the festival weekends at Beaver Dam Farm: Sunflowers at Sunset dinners, goat yoga, sunset yoga, field trips and VIP night.
+- [Community Involvement](https://bdfsun.com/community-involvement): How the Beaver Dam Farm Sunflower Festival gives back: agricultural scholarships for area high school seniors, community scholarships, free field trips and educational talks.
+- [Our Farm](https://bdfsun.com/our-farm): Beaver Dam Farm has been part of the Wickline family since 1900: a tomato canning factory, then a dairy from 1927, and now home of the annual Sunflower Festival.
+- [Our Story](https://bdfsun.com/our-story): The story of the Beaver Dam Farm Sunflower Festival, from Candace Monaghan’s dream and the first festival on September 17, 2016 to the largest sunflower festival on the East Coast.
+- [Vision Statement](https://bdfsun.com/vision): Our vision: a unique, lasting agritourism experience that supports the livelihoods of area artisans, fosters community vibrancy and helps support our family farm.
+- [2021 Partners](https://bdfsun.com/partners): Thank you to the partners who helped make 2021, the “Year of the Sunflower,” memorable at the Beaver Dam Farm Sunflower Festival.
+- [Insects](https://bdfsun.com/insects): Find and identify insects often seen on sunflowers at Beaver Dam Farm, from lady beetles and bumblebees to monarch butterflies, then share a photo for a chance to win a prize.
+- [Asian Lady Beetle](https://bdfsun.com/insects/asian-lady-beetle): Asian Lady Beetle (Harmonia axyridis), found on sunflowers at Beaver Dam Farm: introduced to North America from eastern Asia to help control aphids. Part of the Sunflower Festival insect guide.
+- [Bumblebee Species](https://bdfsun.com/insects/bumblebee): Bumblebee Species (Bombus sp.), found on sunflowers at Beaver Dam Farm: one of 49 US bumblebee species and an important pollinator of native plants and crops. Part of the Sunflower Festival insect guide.
+- [Cabbage White Butterfly](https://bdfsun.com/insects/cabbage-white-butterfly): Cabbage White Butterfly (Pieris rapae), found on sunflowers at Beaver Dam Farm: how to tell a female from a male and how long adults live. Part of the Sunflower Festival insect guide.
+- [Corn Earworm Moth Caterpillar](https://bdfsun.com/insects/corn-earworm-moth-caterpillar): Corn Earworm Moth Caterpillar (Helicoverpa zea), found on sunflowers at Beaver Dam Farm: considered by some the most costly crop pest in North America. Part of the Sunflower Festival insect guide.
+- [Differential Grasshopper](https://bdfsun.com/insects/differential-grasshopper): Differential Grasshopper (Melanoplus differentialis), found on sunflowers at Beaver Dam Farm: a grasshopper that prefers wilted or damaged sunflowers. Part of the Sunflower Festival insect guide.
+- [Fall Webworm Moth Caterpillar](https://bdfsun.com/insects/fall-webworm-moth-caterpillar): Fall Webworm Moth Caterpillar (Hyphantria cunea), found on sunflowers at Beaver Dam Farm: larvae that feed in huge nests and can defoliate trees and shrubs. Part of the Sunflower Festival insect guide.
+- [Goldenrod Soldier Beetle](https://bdfsun.com/insects/goldenrod-soldier-beetle): Goldenrod Soldier Beetle (Chauliognathus pensylvanicus), found on sunflowers at Beaver Dam Farm: a harmless pollen feeder that may prey on aphids and caterpillars. Part of the Sunflower Festival insect guide.
+- [Hawaiian Beet Webworm Moth](https://bdfsun.com/insects/hawaiian-beet-webworm-moth): Hawaiian Beet Webworm Moth (Spoladea recurvalis), found on sunflowers at Beaver Dam Farm: a moth whose larvae feed under a slight web on spinach, beet, cotton and soybean. Part of the Sunflower Festival insect guide.
+- [Monarch Butterfly](https://bdfsun.com/insects/monarch-butterfly): Monarch Butterfly (Danaus plexippus), found on sunflowers at Beaver Dam Farm: an iconic pollinator famous for its multi-generational fall migration. Part of the Sunflower Festival insect guide.
+- [Pipevine Swallowtail](https://bdfsun.com/insects/pipevine-swallowtail): Pipevine Swallowtail (Battus philenor), found on sunflowers at Beaver Dam Farm: also known as the blue swallowtail. Part of the Sunflower Festival insect guide.
+- [Seven-Spotted Lady Beetle](https://bdfsun.com/insects/seven-spotted-lady-beetle): Seven-Spotted Lady Beetle (Coccinella septempunctata), found on sunflowers at Beaver Dam Farm: brought to North America to reduce aphid populations. Part of the Sunflower Festival insect guide.
+- [Western Honey Bee](https://bdfsun.com/insects/western-honey-bee): Western Honey Bee (Apis mellifera), found on sunflowers at Beaver Dam Farm: the European honey bee, which helps pollinate more than 30% of the food we eat. Part of the Sunflower Festival insect guide.
+- [Education](https://bdfsun.com/education): Learn about sunflowers with Beaver Dam Farm: their history as a crop, why they follow the sun, and guides to planting, caring for, cutting and harvesting sunflowers.
+- [Anatomy and Benefits of a Sunflower](https://bdfsun.com/education/sunflower-anatomy): The parts of a sunflower and how its seeds, petals, leaves and stalk are used, from sunflower oil and birdseed to medicine and skin treatments.
+- [Bloom Cycle and Planting](https://bdfsun.com/education/bloom-cycle-and-planting): Most sunflower varieties mature in only 80 to 95 days and bloom for about 12 to 14 days. See the sunflower growth cycle.
+- [Choosing and Preparing a Planting Site](https://bdfsun.com/education/choosing-a-planting-site): Sunflowers grow best in direct sunlight for 6 to 8 hours a day and need long, hot summers. How to choose and prepare a planting site.
+- [Planting Sunflower Seeds](https://bdfsun.com/education/planting-sunflower-seeds): When and how to plant sunflower seeds: sow directly outdoors after the danger of spring frost, once soil has warmed to at least 50°F (10°C).
+- [Caring for Sunflowers](https://bdfsun.com/education/caring-for-sunflowers): How to water, feed and protect young sunflowers, including watering around the root zone about 3 to 4 inches from the plant.
+- [Pests and Disease](https://bdfsun.com/education/pests-and-disease): Protect sunflowers from birds, squirrels, deer and disease, including covering maturing seed heads with bird netting.
+- [Cutting Sunflowers for Bouquets](https://bdfsun.com/education/cutting-sunflowers-for-bouquets): How to cut sunflowers for indoor bouquets: cut the main stem just before its bud opens to encourage side blooms.
+- [Harvesting Sunflowers](https://bdfsun.com/education/harvesting-sunflowers): When and how to harvest sunflower seeds: let the head dry until the back turns brown and the seeds look plump and loose.
+- [Sunflower Varieties](https://bdfsun.com/education/sunflower-varieties): There are over 70 species of sunflowers, from 2-foot dwarf sunflowers to 12-foot mammoths, in yellow, orange, red, white and multicolored varieties.
+
+## More
+- [Full text of every screen](https://bdfsun.com/llms-full.txt)
+- [Sitemap](https://bdfsun.com/sitemap.xml)
+

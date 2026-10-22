@@ -7,8 +7,7 @@
 // It adds no styles, so the mobile rendering is unchanged.
 (function () {
     const CONTROLS = [
-        ['.tile_sf', 'Sunflower Festival'], ['.tile_of', 'Our Farm'],
-        ['.tile_in', 'Insects'], ['.tile_ed', 'Education'],
+        // the welcome tiles contain real <a> links (nav.js), so they need no role here
         ['.daBackButton', 'Back'],
         ['.wend_left_arrow > img', 'Previous photo'], ['.wend_right_arrow > img', 'Next photo'],
         ['#ed_slider_left', 'Previous photo'], ['#ed_slider_right', 'Next photo'],

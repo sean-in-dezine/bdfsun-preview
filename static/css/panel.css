@@ -1,0 +1,235 @@
+/* Pull-up "More about the farm" panel (templates/partials/farm_panel.html, js/panel.js).
+ * Closed, only a slim strip shows, sitting on top of the bottom bar in the same cream so
+ * the two read as one soft-edged unit. Open, a sheet slides up over the screen. */
+:root {
+   --fp-cream: rgba(255, 238, 202, .94);
+   --fp-brown: #4F2C00;
+   --fp-gold: #FFC731;
+   --fp-strip: 20px;
+}
+
+/* ---- strip ------------------------------------------------------------- */
+.fp_strip {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 64px;                 /* phones/desktop override this to sit on their bar */
+   height: var(--fp-strip);
+   z-index: 997;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   background: var(--fp-cream);
+   color: var(--fp-brown);
+   font: 600 11px/1 'Montserrat', sans-serif;
+   letter-spacing: .04em;
+   text-transform: uppercase;
+   cursor: pointer;
+   touch-action: none;          /* swipe-up is handled in JS */
+   -webkit-tap-highlight-color: transparent;
+}
+/* 44px tall hit area without making the strip itself taller */
+.fp_strip::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: -14px;
+   bottom: -10px;
+}
+.fp_strip:focus-visible {
+   outline: 3px solid var(--fp-brown);
+   outline-offset: -3px;
+}
+.fp_grab {
+   display: block;
+   width: 36px;
+   height: 4px;
+   border-radius: 2px;
+   background: rgba(79, 44, 0, .35);
+}
+.fp_strip_text { opacity: .8; }
+
+/* ---- sheet --------------------------------------------------------------- */
+.fp_backdrop {
+   position: fixed;
+   inset: 0;
+   z-index: 1001;
+   background: rgba(79, 44, 0, .32);
+   opacity: 0;
+   transition: opacity .25s ease;
+}
+.fp_backdrop.is-open { opacity: 1; }
+
+.fp_sheet {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   top: 56px;
+   z-index: 1002;
+   display: flex;
+   flex-direction: column;
+   background: #FFFBF0;
+   color: var(--fp-brown);
+   border-radius: 20px 20px 0 0;
+   box-shadow: 0 -8px 30px rgba(79, 44, 0, .18);
+   transform: translateY(105%);
+   transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+   visibility: hidden;
+}
+.fp_sheet.is-open {
+   transform: translateY(0);
+   visibility: visible;
+}
+.fp_sheet.is-dragging { transition: none; }
+.fp_sheet:not(.is-open) { transition: transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s .3s; }
+
+.fp_head {
+   position: relative;
+   flex: none;
+   display: grid;
+   justify-items: center;
+   padding: 8px 56px 10px;
+   border-bottom: 1px solid rgba(79, 44, 0, .08);
+   touch-action: none;          /* swipe-down to close */
+}
+.fp_head .fp_grab { margin-bottom: 8px; }
+.fp_title {
+   margin: 0;
+   font: 700 20px/1.2 'Playfair Display', serif;
+   text-align: center;
+}
+.fp_close {
+   position: absolute;
+   right: 6px;
+   top: 6px;
+   width: 44px;
+   height: 44px;
+   display: grid;
+   place-items: center;
+   border: 0;
+   border-radius: 22px;
+   background: transparent;
+   color: var(--fp-brown);
+   cursor: pointer;
+}
+.fp_close:hover, .fp_close:focus-visible { background: rgba(255, 199, 49, .35); }
+
+.fp_body {
+   flex: 1 1 auto;
+   overflow-x: hidden;
+   min-height: 0;
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+   overscroll-behavior: contain;
+   padding: 12px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+   font-size: 15px;
+   line-height: 1.5;
+}
+.fp_lede { margin: 0 0 12px; text-align: center; }
+.fp_h {
+   margin: 22px 0 8px;
+   font: 700 17px/1.3 'Playfair Display', serif;
+   border-bottom: 3px solid var(--fp-gold);
+   display: inline-block;
+}
+.fp_small { font-size: 13px; opacity: .85; }
+.fp_body a { color: #8A4B00; }
+
+/* photo strip: swipe sideways, snaps per photo */
+.fp_photos {
+   display: grid;
+   grid-auto-flow: column;
+   grid-auto-columns: 80%;
+   gap: 10px;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   overscroll-behavior-x: contain;
+   margin: 0 -20px;
+   padding: 0 20px 6px;
+   scrollbar-width: thin;
+}
+.fp_photo {
+   margin: 0;
+   scroll-snap-align: center;
+}
+.fp_photo img {
+   display: block;
+   width: 100%;
+   height: auto;
+   aspect-ratio: 3 / 2;
+   object-fit: cover;
+   border-radius: 12px;
+   background: #F3E6C8;
+}
+.fp_photo figcaption { font-size: 11px; opacity: .7; margin-top: 3px; }
+
+.fp_facts { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 12px; }
+.fp_facts dt { font-weight: 700; }
+.fp_facts dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 360px) { .fp_facts { grid-template-columns: minmax(0, 1fr); gap: 0; } .fp_facts dd { margin-bottom: 8px; } }
+
+.fp_social, .fp_links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.fp_social a, .fp_links a {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   min-height: 44px;
+   padding: 0 14px;
+   border: 2px solid var(--fp-gold);
+   border-radius: 22px;
+   background: #fff;
+   color: var(--fp-brown) !important;
+   text-decoration: none;
+   font-weight: 600;
+}
+.fp_icon, .fp_icon svg { display: block; width: 22px; height: 22px; }
+.fp_icon_facebook { color: #1877F2; }
+.fp_icon_instagram { color: #C13584; }
+.fp_icon_tiktok { color: #111; }
+.fp_icon_youtube { color: #FF0000; }
+
+.fp_faq details {
+   border-bottom: 1px solid rgba(79, 44, 0, .12);
+   padding: 4px 0;
+}
+.fp_faq summary {
+   min-height: 40px;
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+   cursor: pointer;
+}
+.fp_faq p { margin: 0 0 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+   .fp_sheet, .fp_backdrop { transition: none !important; }
+}
+
+/* ---- desktop: a centred card above the bar ------------------------------- */
+@media (min-width: 769px) {
+   .fp_strip {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 24px;
+      bottom: var(--bd-shop, 64px);
+      border-radius: 12px 12px 0 0;
+   }
+   .fp_sheet {
+      left: 50%;
+      right: auto;
+      width: min(760px, 92vw);
+      top: auto;
+      height: min(82vh, 860px);
+      transform: translate(-50%, 105%);
+   }
+   .fp_sheet.is-open { transform: translate(-50%, 0); }
+   .fp_photos { grid-auto-columns: 46%; }
+}

@@ -3,13 +3,14 @@
  * deleted on activate.
  *
  * Strategies:
- *  - Page navigations: network first, fall back to the cached app shell when offline.
+ *  - Page navigations: network first, cached per path; offline, fall back to that path's
+ *    copy or the '/bdfsun-preview/' shell (nav.js then shows the screen for location.pathname).
  *  - Same-origin CSS/JS: stale-while-revalidate (fast, refreshes in the background).
  *  - Same-origin images: cache first, capped at MAX_IMAGES entries.
  *  - Google Fonts: stale-while-revalidate.
  *  - /api/*, non-GET, and everything else cross-origin (YouTube, reCAPTCHA): not touched.
  */
-const VERSION = 'v3b-2026-10-22';
+const VERSION = 'v5-2026-10-22';
 const PREFIX = 'bdfsun-';
 const SHELL_CACHE = `${PREFIX}shell-${VERSION}`;
 const IMAGE_CACHE = `${PREFIX}img-${VERSION}`;
@@ -40,6 +41,8 @@ const SHELL = [
   '/bdfsun-preview/static/js/youtube.js',
   '/bdfsun-preview/static/js/shell.js',
   '/bdfsun-preview/static/js/nav.js',
+  '/bdfsun-preview/static/js/panel.js',
+  '/bdfsun-preview/static/css/panel.css',
   '/bdfsun-preview/static/img/apple-touch-icon.png',
   '/bdfsun-preview/static/img/icons/icon-192.png',
   '/bdfsun-preview/static/img/main_imgs/Header-Identity2x.jpg',
@@ -73,8 +76,8 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// The production server answers unknown paths with 200 + index.html, so never
-// store a response whose type doesn't match what was asked for.
+// Never store a response whose type doesn't match what was asked for
+// (error pages, HTML answered for a missing asset, ...).
 function isGood(response, kind) {
   if (kind === 'font' && response && response.type === 'opaque') return true; // Google Fonts CSS (no-cors)
   if (!response || !response.ok || response.type === 'opaque') return false;
@@ -95,12 +98,13 @@ async function networkFirstPage(request) {
   const cache = await caches.open(SHELL_CACHE);
   try {
     const response = await fetch(request);
-    if (isGood(response) && (response.headers.get('content-type') || '').includes('text/html')) {
-      cache.put('/bdfsun-preview/', response.clone());
+    // only real app pages (2xx HTML, not redirects or 404s) are kept, each under its own path
+    if (isGood(response) && !response.redirected && (response.headers.get('content-type') || '').includes('text/html')) {
+      cache.put(new URL(request.url).pathname, response.clone());
     }
     return response;
   } catch (err) {
-    return (await cache.match('/bdfsun-preview/')) ||
+    return (await cache.match(new URL(request.url).pathname)) || (await cache.match('/bdfsun-preview/')) ||
       new Response('<!doctype html><meta charset="utf-8"><title>Offline</title><p style="font-family:sans-serif;text-align:center;margin-top:30vh">You are offline. Please reconnect and try again.</p>',
         { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
   }
@@ -136,7 +140,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   if (url.origin === self.location.origin) {
-    if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/admin')) return;
+    if (/^\/(api|admin|accounts|login|logout|gallery|uploadFlower)(\/|$)/.test(url.pathname)) return;
     if (request.mode === 'navigate') return event.respondWith(networkFirstPage(request));
     if (request.destination === 'style' || request.destination === 'script' || url.pathname === '/bdfsun-preview/manifest.webmanifest') {
       return event.respondWith(staleWhileRevalidate(request, SHELL_CACHE, request.destination));
