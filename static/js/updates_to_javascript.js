@@ -239,7 +239,7 @@ let zed = 1
 
 function setWendImg() {
   //console.log('setting wend image')
-  let imgsrc = `static/img/sunflower_festival/weekend_activities/weekend_content_${zed}.jpg`
+  let imgsrc = `${static_url}img/sunflower_festival/weekend_activities/weekend_content_${zed}.jpg`
   // wend_img_slider.setAttribute("src", imgsrc)
   let wend2_img = document.querySelector('.wend2_image')
 

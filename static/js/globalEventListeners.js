@@ -75,17 +75,17 @@ let eduzed
 
 function setEduImg() {
   eduzed = 8
-  ed_slider_img.src = `static/img/Education/Education Main Gallery/edu${eduzed}.jpg`
+  ed_slider_img.src = `${static_url}img/Education/Education Main Gallery/edu${eduzed}.jpg`
 }
 // static/img/Education/Education Main Gallery/edu8.jpg
 function edRight() {
 
   if (eduzed == 19) {
     eduzed = 1
-    ed_slider_img.src = `static/img/Education/Education Main Gallery/edu${eduzed}.jpg`
+    ed_slider_img.src = `${static_url}img/Education/Education Main Gallery/edu${eduzed}.jpg`
   } else {
     eduzed = eduzed + 1
-    ed_slider_img.src = `static/img/Education/Education Main Gallery/edu${eduzed}.jpg`
+    ed_slider_img.src = `${static_url}img/Education/Education Main Gallery/edu${eduzed}.jpg`
   }
 
 
@@ -96,11 +96,11 @@ function edLeft() {
 
   if (eduzed == 1) {
     eduzed = 19
-    ed_slider_img.src = `static/img/Education/Education Main Gallery/edu${eduzed}.jpg`
+    ed_slider_img.src = `${static_url}img/Education/Education Main Gallery/edu${eduzed}.jpg`
 
   } else {
     eduzed = eduzed - 1
-    ed_slider_img.src = `static/img/Education/Education Main Gallery/edu${eduzed}.jpg`
+    ed_slider_img.src = `${static_url}img/Education/Education Main Gallery/edu${eduzed}.jpg`
 
   }
 

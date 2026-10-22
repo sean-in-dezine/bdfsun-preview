@@ -9,7 +9,7 @@
  *  - Google Fonts: stale-while-revalidate.
  *  - /api/*, non-GET, and everything else cross-origin (YouTube, reCAPTCHA): not touched.
  */
-const VERSION = 'v2-2026-10-22';
+const VERSION = 'v3b-2026-10-22';
 const PREFIX = 'bdfsun-';
 const SHELL_CACHE = `${PREFIX}shell-${VERSION}`;
 const IMAGE_CACHE = `${PREFIX}img-${VERSION}`;
@@ -21,6 +21,7 @@ const SHELL = [
   '/bdfsun-preview/manifest.webmanifest',
   '/bdfsun-preview/static/css/style.css',
   '/bdfsun-preview/static/css/medias.css',
+  '/bdfsun-preview/static/css/mobile.css',
   '/bdfsun-preview/static/css/desktop.css',
   '/bdfsun-preview/static/js/main.js',
   '/bdfsun-preview/static/js/welcome_script.js',
@@ -36,6 +37,9 @@ const SHELL = [
   '/bdfsun-preview/static/js/os_lightbox.js',
   '/bdfsun-preview/static/js/blurAll.js',
   '/bdfsun-preview/static/js/keyboard.js',
+  '/bdfsun-preview/static/js/youtube.js',
+  '/bdfsun-preview/static/js/shell.js',
+  '/bdfsun-preview/static/js/nav.js',
   '/bdfsun-preview/static/img/apple-touch-icon.png',
   '/bdfsun-preview/static/img/icons/icon-192.png',
   '/bdfsun-preview/static/img/main_imgs/Header-Identity2x.jpg',

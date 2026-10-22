@@ -1,0 +1,193 @@
+/* Phone layout fixes (loaded for screens up to 768px wide; desktop.css takes over above).
+ *
+ * The original phone styles size the header in vh (10-12vh + 4vh padding) while its
+ * logo image scales with the screen width, and offset the content by 17vh. On
+ * shorter viewports (in-app browsers, iPhones with toolbars) 17vh is less than the
+ * header, so screen titles started underneath it, and the scrolled header left a
+ * see-through band that content slid behind. Here everything that has to line up
+ * with the logo image is sized from the image's own aspect ratio instead.
+ */
+:root {
+   --hdr-full: calc(100vw * 236 / 780);   /* Header-Identity2x.jpg: 780x236 */
+   --hdr-slim: calc(100vw * 112 / 780);   /* ScrollHeaderIdentity2x.jpg: 780x112 */
+   --shop-h: 48px;                        /* bottom bar, above the home indicator */
+   --handle-h: 0px;                       /* reserved for the info panel's grab handle */
+   --safe-b: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---- header ------------------------------------------------------------- */
+
+.sunflower_logo_bar {
+   box-sizing: border-box;
+   width: 100%;
+   height: var(--hdr-full);
+   padding: 0;
+   background-size: 100% auto;
+   background-color: #FFC731;
+   transition: height .2s ease;
+}
+.sunflower_logo_bar.is-scrolled {
+   height: var(--hdr-slim);
+}
+/* back button: vertically centred in the slim bar, top-left in the full one */
+.daBackButton {
+   top: calc((var(--hdr-slim) - 30px) / 2);
+   left: 10px;
+   z-index: 1000;
+}
+.daBackButton img {
+   display: block;
+}
+/* 44px tap target around the 30px icon */
+.daBackButton::before {
+   content: "";
+   position: absolute;
+   inset: -7px;
+}
+
+/* content starts below the full header on every phone height */
+.changeable_content {
+   margin-top: calc(var(--hdr-full) + 16px);
+   padding-bottom: calc(var(--shop-h) + var(--handle-h) + var(--safe-b) + 16px);
+}
+
+/* ---- bottom "Sunflower Shop" bar -----------------------------------------
+ * was 8vh plus a 6vh button pushed down by a vh margin and a camera offset in vh:
+ * about 70-100px tall on phones. Now 48px + the home-indicator inset; the camera
+ * badge on the 'Take a Picture' screens keeps its original 54px size and floats
+ * above the bar's top edge. */
+.shop_sticky {
+   box-sizing: border-box;
+   left: 0;
+   width: 100%;
+   height: calc(var(--shop-h) + var(--safe-b));
+   padding-bottom: var(--safe-b);
+   z-index: 998;
+}
+.shop_background {
+   position: relative;
+   box-sizing: border-box;
+   width: 100%;
+   height: var(--shop-h);
+   background-size: auto 100%;
+   background-position: left 4px center;
+   grid-auto-flow: column;
+   justify-content: center;
+   align-items: center;
+   column-gap: 10px;
+}
+.sunflower_shop {
+   width: auto;
+   min-width: 60vw;
+   height: 44px;                  /* full tap target, 2px inset from the bar edges */
+   margin-top: 0 !important;      /* the JS sets a vh-based nudge */
+   padding: 0 16px;
+   font-size: 1.1rem;
+   line-height: 1;
+}
+/* original 54x54 icon, bottom-aligned at the right so it rises above the slim bar.
+ * Decorative (no handler), so taps fall through to the bar/button/content. */
+.shop_camera {
+   position: absolute;
+   left: auto;
+   top: auto;
+   right: 12px;
+   bottom: 4px;
+   width: 54px;
+   height: 54px;
+   pointer-events: none;
+}
+
+/* ---- images --------------------------------------------------------------
+ * height:100% on an <img> inside an auto-height grid row has nothing to resolve
+ * against. WebKit on iOS resolved it to the row height measured before the lazy
+ * image loaded, which squashed the Our Story photos into thin strips. */
+.os_img {
+   height: auto;
+}
+/* education slider photos have mixed aspect ratios in a fixed box: crop, don't stretch */
+#ed_slider_img {
+   object-fit: cover;
+}
+
+
+/* ---- app shell -------------------------------------------------------------
+ * The document itself no longer scrolls on phones. With a scrolling <body>, iOS
+ * rubber-bands the whole page and resizes the viewport as its toolbars collapse,
+ * so the position:fixed header and bottom bar visibly bounce and jitter. Instead
+ * the page is a fixed shell: header on top, bottom bar at the bottom, and one
+ * inner scroller (.static_and_immovable) between/under them. js/shell.js points
+ * window.scrollTo / pageYOffset and scroll events at that scroller so the
+ * existing screen scripts keep working unchanged. */
+html, body {
+   height: 100%;
+   overflow: hidden;
+   overscroll-behavior: none;
+}
+body {
+   position: fixed;
+   inset: 0;
+   margin: 0;
+   width: auto;
+   display: block;
+}
+.static_and_immovable {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: calc(var(--shop-h) + var(--safe-b));
+   width: auto;
+   height: auto;
+   overflow-x: hidden;
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+   overscroll-behavior: contain;
+   background-attachment: scroll;
+   background-position-y: 40%;
+}
+.sunflower_logo_bar {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 999;
+}
+.changeable_content {
+   background-attachment: scroll;
+   /* the bar is outside the scroller now, so only the handle strip and the part
+      of the camera badge that rises above the bar need clearing */
+   padding-bottom: calc(var(--handle-h) + 24px);
+}
+/* home used its own 80vh inner scroller; one scroller is enough. Keep the 80vh
+ * as a minimum so the grid spreads out as before, and let the intro text grow
+ * (its fixed 15vh box is shorter than the text on short phones). */
+.welcome_screen {
+   height: auto;
+   min-height: 80vh;
+   overflow: visible;
+}
+.ws_text {
+   height: auto;
+   min-height: 15vh;
+}
+.shop_sticky {
+   position: absolute;
+   bottom: 0;
+   /* no hard edge: the bar's cream fades up into the page */
+   background-color: rgba(255, 238, 202, .94);
+   -webkit-backdrop-filter: blur(8px);
+   backdrop-filter: blur(8px);
+}
+.shop_sticky::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 100%;
+   height: 20px;
+   background: linear-gradient(to top, rgba(255, 238, 202, .94), rgba(255, 238, 202, 0));
+   pointer-events: none;
+}
+.daBackButton {
+   position: absolute;
+}
