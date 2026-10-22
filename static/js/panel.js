@@ -96,5 +96,19 @@
         el.addEventListener('touchcancel', endDrag, { passive: true })
     })
 
+    // ---- one-time nudge so the strip gets noticed (once per browser) ------
+    var NUDGE_KEY = 'bdf-farm-panel-nudged'
+    function seen() { try { return !!localStorage.getItem(NUDGE_KEY) } catch (e) { return true } }
+    function remember() { try { localStorage.setItem(NUDGE_KEY, '1') } catch (e) {} }
+    strip.addEventListener('click', remember)
+    if (!seen() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setTimeout(function () {
+            if (isOpen() || seen() || getComputedStyle(strip).display === 'none') return
+            remember()
+            strip.classList.add('fp-nudge')
+            strip.addEventListener('animationend', function () { strip.classList.remove('fp-nudge') }, { once: true })
+        }, 1500)
+    }
+
     window.bdfPanel = { open: open, close: close, isOpen: isOpen }
 })()

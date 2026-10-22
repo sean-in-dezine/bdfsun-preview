@@ -10,7 +10,7 @@
  *  - Google Fonts: stale-while-revalidate.
  *  - /api/*, non-GET, and everything else cross-origin (YouTube, reCAPTCHA): not touched.
  */
-const VERSION = 'v5-2026-10-22';
+const VERSION = 'v6-2026-10-22';
 const PREFIX = 'bdfsun-';
 const SHELL_CACHE = `${PREFIX}shell-${VERSION}`;
 const IMAGE_CACHE = `${PREFIX}img-${VERSION}`;

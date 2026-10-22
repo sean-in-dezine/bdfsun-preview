@@ -9,6 +9,8 @@
 }
 
 /* ---- strip ------------------------------------------------------------- */
+/* Stays thin (20px visible) but always readable: dark-brown label + chevrons on the
+ * bar's cream, a grab tab poking up into the fade, and a taller invisible tap area. */
 .fp_strip {
    position: fixed;
    left: 0;
@@ -19,27 +21,28 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 8px;
+   gap: 7px;
    margin: 0;
    padding: 0;
    border: 0;
-   background: var(--fp-cream);
+   border-top: 1px solid rgba(255, 199, 49, .75);
+   background: linear-gradient(to bottom, #FFF3D6, var(--fp-cream));
    color: var(--fp-brown);
-   font: 600 11px/1 'Montserrat', sans-serif;
-   letter-spacing: .04em;
-   text-transform: uppercase;
+   font: 700 13px/1 'Montserrat', sans-serif;
+   letter-spacing: .01em;
    cursor: pointer;
    touch-action: none;          /* swipe-up is handled in JS */
    -webkit-tap-highlight-color: transparent;
+   --fp-x: 0;
 }
-/* 44px tall hit area without making the strip itself taller */
+/* ~30px tap area (and the grab tab) without making the strip itself taller */
 .fp_strip::before {
    content: "";
    position: absolute;
    left: 0;
    right: 0;
-   top: -14px;
-   bottom: -10px;
+   top: -10px;
+   bottom: 0;
 }
 .fp_strip:focus-visible {
    outline: 3px solid var(--fp-brown);
@@ -52,7 +55,30 @@
    border-radius: 2px;
    background: rgba(79, 44, 0, .35);
 }
-.fp_strip_text { opacity: .8; }
+.fp_strip .fp_grab {
+   position: absolute;
+   left: 50%;
+   top: -7px;
+   margin-left: -18px;
+   background: rgba(79, 44, 0, .55);
+   box-shadow: 0 0 0 2px rgba(255, 243, 214, .9);
+}
+.fp_strip_text { white-space: nowrap; }
+.fp_chev { flex: none; color: #B86E00; }
+.fp_strip:hover .fp_strip_text { text-decoration: underline; text-underline-offset: 2px; }
+
+/* one-time nudge (panel.js adds .fp-nudge once per browser): peek up and bounce */
+@keyframes fp-nudge {
+   0%, 100% { transform: translateX(var(--fp-x)) translateY(0); box-shadow: 0 0 0 rgba(255, 199, 49, 0); }
+   22% { transform: translateX(var(--fp-x)) translateY(-9px); box-shadow: 0 -4px 14px rgba(255, 199, 49, .8); }
+   42% { transform: translateX(var(--fp-x)) translateY(0); }
+   58% { transform: translateX(var(--fp-x)) translateY(-4px); box-shadow: 0 -2px 10px rgba(255, 199, 49, .6); }
+   74% { transform: translateX(var(--fp-x)) translateY(0); }
+}
+.fp_strip.fp-nudge { animation: fp-nudge 1.3s ease-in-out 1; }
+@media (prefers-reduced-motion: reduce) {
+   .fp_strip.fp-nudge { animation: none; }
+}
 
 /* ---- sheet --------------------------------------------------------------- */
 .fp_backdrop {
@@ -214,11 +240,14 @@
 /* ---- desktop: a centred card above the bar ------------------------------- */
 @media (min-width: 769px) {
    .fp_strip {
+      --fp-x: -50%;
       left: 50%;
       right: auto;
       transform: translateX(-50%);
-      width: 260px;
-      height: 24px;
+      width: 280px;
+      height: 22px;
+      border: 1px solid rgba(255, 199, 49, .75);
+      border-bottom: 0;
       bottom: var(--bd-shop, 64px);
       border-radius: 12px 12px 0 0;
    }
