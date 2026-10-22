@@ -2581,3 +2581,79 @@ button.next_map > div, button.next_map_2 > div, button.next_map_3 > div, button.
    background: #FFEECA;
    color: #4F2C00;
 }
+
+/* ---- Vision Statement gallery: smoother photo changes and sunflower turn ---------
+ * Everything here animates only opacity and transforms (rotate/scale/translate), so it
+ * runs on the compositor. vs_gallery_script.js sets --vs-angle (a quarter turn per tap,
+ * accumulating) and toggles .vs-out / .vs-in-start on the photos. */
+.inner_circle {
+   animation: none;                               /* the old 5s box-shadow/size pulse */
+   rotate: var(--vs-angle, 0deg);
+   transition: rotate .8s cubic-bezier(.3, 1.45, .45, 1), scale .18s ease;
+   cursor: pointer;
+   touch-action: manipulation;
+   -webkit-tap-highlight-color: transparent;
+   -webkit-user-select: none;
+   user-select: none;
+   will-change: rotate, scale;
+}
+.inner_circle:active { scale: .88; transition: rotate .8s cubic-bezier(.3, 1.45, .45, 1), scale .08s ease; }
+.inner_circle:focus-visible { outline: 3px solid #4F2C00; outline-offset: 4px; }
+/* soft golden halo: breathes slowly at rest, flashes on each turn */
+.inner_circle::before {
+   content: "";
+   position: absolute;
+   inset: -3px;
+   border-radius: 50%;
+   box-shadow: 0 0 16px 6px rgba(255, 198, 48, .85), 0 0 34px 10px rgba(255, 255, 255, .7);
+   opacity: .55;
+   z-index: -1;
+   pointer-events: none;
+   animation: vs-halo 3.6s ease-in-out infinite;
+}
+.inner_circle.vs-pop::before { animation: vs-pop .6s cubic-bezier(.2, .8, .2, 1) 1; }
+@keyframes vs-halo {
+   0%, 100% { opacity: .45; transform: scale(.94); }
+   50% { opacity: .9; transform: scale(1.1); }
+}
+@keyframes vs-pop {
+   0% { opacity: .5; transform: scale(1); }
+   35% { opacity: 1; transform: scale(1.35); }
+   100% { opacity: .55; transform: scale(1); }
+}
+/* the flower itself turns very slowly while idle (on its own element, so it never fights the tap rotation) */
+.vs_flower {
+   display: block;
+   line-height: 1;
+   animation: vs-idle 28s linear infinite;
+   pointer-events: none;
+}
+@keyframes vs-idle { to { transform: rotate(-360deg); } }
+
+.vision .vs_gallery > img {
+   --vs-dx: 0px;
+   --vs-dy: 0px;
+   transition: opacity .5s cubic-bezier(.2, .8, .2, 1), transform .6s cubic-bezier(.22, 1.2, .36, 1), box-shadow .2s ease;
+   backface-visibility: hidden;
+}
+.vision .vs_gallery > .vs_gal_1 { --vs-dx: 14px;  --vs-dy: 14px; }
+.vision .vs_gallery > .vs_gal_2 { --vs-dx: -14px; --vs-dy: 14px; }
+.vision .vs_gallery > .vs_gal_3 { --vs-dx: 14px;  --vs-dy: -14px; }
+.vision .vs_gallery > .vs_gal_4 { --vs-dx: -14px; --vs-dy: -14px; }
+.vision .vs_gallery > img.vs-out {
+   opacity: 0;
+   transform: translate(var(--vs-dx), var(--vs-dy)) scale(.9) rotate(-3deg);
+   transition: opacity .22s ease-in, transform .22s ease-in;
+}
+.vision .vs_gallery > img.vs-in-start {
+   opacity: 0;
+   transform: translate(var(--vs-dx), var(--vs-dy)) scale(.86) rotate(4deg);
+   transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .inner_circle { transition: scale .1s ease; }
+   .inner_circle::before, .inner_circle.vs-pop::before, .vs_flower { animation: none; }
+   .vision .vs_gallery > img, .vision .vs_gallery > img.vs-out { transition: opacity .14s linear; transform: none; }
+   .vision .vs_gallery > img.vs-in-start { transform: none; }
+}
