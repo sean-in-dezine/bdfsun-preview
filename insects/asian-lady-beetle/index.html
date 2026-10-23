@@ -189,7 +189,7 @@
     
     <script>
         var static_url = "/bdfsun-preview/static/";
-        var media_url = "/bdsa-statichttps://us-east-1.linodeobjects.com/";
+        var media_url = "https://bdsa-static.us-east-1.linodeobjects.com/";
         var app_base = "/bdfsun-preview/";
         var initial_route = "/insects/asian\u002Dlady\u002Dbeetle";
     </script>
@@ -2022,6 +2022,13 @@
             });
         }
     </script>
+<script>
+// runs after the deferred site scripts so it replaces their photo_upload()
+document.addEventListener('DOMContentLoaded', function () { window.photo_upload = function () {
+  var msg = 'This is a static preview with no server, so photos are not uploaded here. On bdfsun.com this form sends your photo to the farm.';
+  if (window.swal) { swal('Preview only', msg, 'info'); } else { alert(msg); }
+}; });
+</script>
 </body>
 
 </html>

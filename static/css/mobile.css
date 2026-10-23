@@ -78,15 +78,17 @@
 }
 .sunflower_shop {
    width: auto;
-   min-width: 60vw;
+   min-width: 80vw;               /* same tap width as the live bar (was 60vw: taps near the edges missed) */
    height: 44px;                  /* full tap target, 2px inset from the bar edges */
+   touch-action: manipulation;
    margin-top: 0 !important;      /* the JS sets a vh-based nudge */
    padding: 0 16px;
    font-size: 1.1rem;
    line-height: 1;
 }
 /* original 54x54 icon, bottom-aligned at the right so it rises above the slim bar.
- * Decorative (no handler), so taps fall through to the bar/button/content. */
+ * It is tappable and does the same as the button (globalEventListeners.js); with
+ * pointer-events:none its top half let taps fall through to the farm panel strip. */
 .shop_camera {
    position: absolute;
    left: auto;
@@ -95,7 +97,8 @@
    bottom: 4px;
    width: 54px;
    height: 54px;
-   pointer-events: none;
+   cursor: pointer;
+   touch-action: manipulation;
 }
 
 /* ---- images --------------------------------------------------------------

@@ -4,6 +4,15 @@ let SUNFLOWER_SHOP = document.querySelector('div>button.sunflower_shop')
 
 //SUNFLOWER_SHOP.addEventListener('click', openSunflowerShop)
 
+// the camera badge next to "Take a Picture" does the same as the button
+// (only shown on the Take a Picture screens).
+let SHOP_CAMERA_BADGE = document.querySelector('.shop_camera')
+if (SHOP_CAMERA_BADGE) SHOP_CAMERA_BADGE.addEventListener('click', function (event) {
+    event.preventDefault()
+    SUNFLOWER_SHOP.click()
+})
+
+
 SUNFLOWER_SHOP.addEventListener('click', function (event) {
   if (this.innerHTML === 'Take a Picture - Flower') {
     takePhoto.call(this, event, "flower");
