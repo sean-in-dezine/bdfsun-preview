@@ -141,6 +141,20 @@
       position: static;
       height: 36px;
       width: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      position: relative;         /* anchors the file input; offsets from style.css reset */
+      left: auto;
+      top: auto;
+      overflow: hidden;
+   }
+   .shop_camera_img {
+      display: block;
+      height: 100%;
+      width: auto;
+      pointer-events: none;
    }
 
    /* ---- shared typography ------------------------------------------------ */

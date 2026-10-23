@@ -397,6 +397,8 @@ function photo_upload(photo_type) {
   var phone = document.getElementById('phone').value;
   var recaptcha = document.getElementById('g-recaptcha-response').value;
   var photo = document.getElementById('takePhotoButton').files[0];
+  // photo taken with the bottom-bar camera badge, if it couldn't be copied into the form's field
+  if (!photo && window.bdfBadgePhoto) photo = window.bdfBadgePhoto();
   var formdata = new FormData();
   //var api_url = "/api/upload_flower"
   //formdata.append('flower_pic', photo);

@@ -2657,3 +2657,30 @@ button.next_map > div, button.next_map_2 > div, button.next_map_3 > div, button.
    .vision .vs_gallery > img, .vision .vs_gallery > img.vs-out { transition: opacity .14s linear; transform: none; }
    .vision .vs_gallery > img.vs-in-start { transform: none; }
 }
+
+
+/* ---- camera badge: a native file input over the icon ---------------------
+ * The input is invisible but covers the whole badge, so the tap lands on it
+ * natively (iOS opens the camera only from a real tap on the input). */
+.shop_camera { -webkit-user-select: none; user-select: none; }
+.shop_camera_input {
+   position: absolute;
+   z-index: 1;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   opacity: 0;
+   cursor: pointer;
+   font-size: 0;                /* no visible text caret/label in any engine */
+   touch-action: manipulation;
+}
+.shop_camera_input:focus-visible + .shop_camera_img { outline: 2px solid #4F2C00; outline-offset: 2px; border-radius: 12px; }
+
+/* the photo form's camera circle shows the chosen photo */
+.hide_replacement.has-photo {
+   background-size: cover;
+   background-position: center;
+   animation: none;
+}

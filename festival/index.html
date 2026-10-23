@@ -1835,7 +1835,9 @@
     <div class="shop_sticky static">
         <div class="shop_background">
             <button class="sunflower_shop">View Events</button>
-            <img loading="lazy" decoding="async" class="shop_camera" src="/bdfsun-preview/static/img/main_imgs/Camera Icon2x.png" alt="Camera">
+            <!-- The badge IS a file input (opacity 0, covering the icon), so one native tap opens
+                 the camera; on change, camera_badge.js opens this screen's photo form with the photo attached. -->
+            <label class="shop_camera" aria-label="Take a Picture with your camera"><input type="file" class="shop_camera_input" id="cameraBadgeInput" accept="image/*" capture="environment"><img class="shop_camera_img" decoding="async" src="/bdfsun-preview/static/img/main_imgs/Camera Icon2x.png" alt=""></label>
         </div>
     </div>
 
@@ -2045,13 +2047,28 @@
     <script defer src="/bdfsun-preview/static/js/youtube.js"></script>
     <script defer src="/bdfsun-preview/static/js/nav.js"></script>
     <script defer src="/bdfsun-preview/static/js/panel.js"></script>
+    <script defer src="/bdfsun-preview/static/js/camera_badge.js"></script>
     <script async defer src="https://www.google.com/recaptcha/api.js"></script>
     <script defer src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
+            // When a new service worker takes over a page an older one was controlling,
+            // reload once so the page runs the new build (not on the first install).
+            if (navigator.serviceWorker.controller) {
+                var bdfReloaded = false;
+                navigator.serviceWorker.addEventListener('controllerchange', function () {
+                    if (bdfReloaded) return;
+                    bdfReloaded = true;
+                    window.location.reload();
+                });
+            }
             window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/bdfsun-preview/sw.js', { scope: '/bdfsun-preview/' }).catch(function (err) {
+                // updateViaCache 'none': always fetch sw.js from the network, so a new
+                // deploy is picked up on the next load.
+                navigator.serviceWorker.register('/bdfsun-preview/sw.js', { scope: '/bdfsun-preview/', updateViaCache: 'none' }).then(function (reg) {
+                    reg.update();
+                }).catch(function (err) {
                     console.warn('Service worker registration failed:', err);
                 });
             });

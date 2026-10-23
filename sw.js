@@ -5,12 +5,12 @@
  * Strategies:
  *  - Page navigations: network first, cached per path; offline, fall back to that path's
  *    copy or the '/bdfsun-preview/' shell (nav.js then shows the screen for location.pathname).
- *  - Same-origin CSS/JS: stale-while-revalidate (fast, refreshes in the background).
+ *  - Same-origin CSS/JS: network first (revalidated), cache only when offline.
  *  - Same-origin images: cache first, capped at MAX_IMAGES entries.
  *  - Google Fonts: stale-while-revalidate.
  *  - /api/*, non-GET, and everything else cross-origin (YouTube, reCAPTCHA): not touched.
  */
-const VERSION = 'v8-2026-10-22';
+const VERSION = 'v9-2026-10-23';
 const PREFIX = 'bdfsun-';
 const SHELL_CACHE = `${PREFIX}shell-${VERSION}`;
 const IMAGE_CACHE = `${PREFIX}img-${VERSION}`;
@@ -42,6 +42,7 @@ const SHELL = [
   '/bdfsun-preview/static/js/shell.js',
   '/bdfsun-preview/static/js/nav.js',
   '/bdfsun-preview/static/js/panel.js',
+  '/bdfsun-preview/static/js/camera_badge.js',
   '/bdfsun-preview/static/css/panel.css',
   '/bdfsun-preview/static/img/apple-touch-icon.png',
   '/bdfsun-preview/static/img/icons/icon-192.png',
@@ -119,6 +120,17 @@ async function staleWhileRevalidate(request, cacheName, kind) {
   return cached || (await network) || Response.error();
 }
 
+async function networkFirstAsset(request, cacheName, kind) {
+  const cache = await caches.open(cacheName);
+  try {
+    const response = await fetch(request, { cache: 'no-cache' });
+    if (isGood(response, kind)) cache.put(request, response.clone());
+    return response;
+  } catch (err) {
+    return (await cache.match(request)) || Response.error();
+  }
+}
+
 async function cacheFirstImage(request) {
   const shell = await caches.match(request);
   if (shell) return shell;
@@ -143,7 +155,8 @@ self.addEventListener('fetch', (event) => {
     if (/^\/(api|admin|accounts|login|logout|gallery|uploadFlower)(\/|$)/.test(url.pathname)) return;
     if (request.mode === 'navigate') return event.respondWith(networkFirstPage(request));
     if (request.destination === 'style' || request.destination === 'script' || url.pathname === '/bdfsun-preview/manifest.webmanifest') {
-      return event.respondWith(staleWhileRevalidate(request, SHELL_CACHE, request.destination));
+      // network first, so a deploy's CSS/JS is used on the very next load; cache only offline
+      return event.respondWith(networkFirstAsset(request, SHELL_CACHE, request.destination));
     }
     if (request.destination === 'image') return event.respondWith(cacheFirstImage(request));
     return; // video ranges etc.: let the browser handle them
