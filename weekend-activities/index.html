@@ -2073,7 +2073,7 @@
                 // updateViaCache 'none': always fetch sw.js from the network, so a new
                 // deploy is picked up on the next load.
                 navigator.serviceWorker.register('/bdfsun-preview/sw.js', { scope: '/bdfsun-preview/', updateViaCache: 'none' }).then(function (reg) {
-                    reg.update();
+                    reg.update().catch(function () { /* offline or aborted by the update reload */ });
                 }).catch(function (err) {
                     console.warn('Service worker registration failed:', err);
                 });
